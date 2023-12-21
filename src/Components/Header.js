@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Services from "./Services";
+import Company from './Company';
 
 // Configurations
 const contactInfo = [
@@ -12,7 +13,7 @@ const navigationItems = [
         { text: 'Get Free Mockup Now!', link: '/' },
         { text: <Services /> }, // Assuming #services is the section ID
         { text: 'Portfolio', link: '/portfolio' },
-        { text: 'Company', link: '/company' },
+        { text: <Company /> },
 ];
 
 const locationInfo = { icon: 'fa-solid fa-location-dot', text: '750 West Hampden Avenue Denver CO' };

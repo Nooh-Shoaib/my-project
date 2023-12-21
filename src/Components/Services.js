@@ -6,6 +6,7 @@ let advantages = [
                 imageUrl:
                         'https://thecustomwebsites.com/wp-content/uploads/2023/05/htpyxaicaqftygqbuwev_robvzn.svg',
                 label: 'Custom&nbsp;Web&nbsp;Development',
+                link: '/'
         },
         {
                 imageUrl:
@@ -49,65 +50,88 @@ let advantages = [
         },
 ];
 
+const Services = () => {
+        const [isArrowUp, setArrowUp] = useState(false);
 
-
-
-function Navbar() {
-        const [isProductMenuOpen, setProductMenuOpen] = useState(false);
-
-        const toggleProductMenu = () => {
-                setProductMenuOpen(!isProductMenuOpen);
+        const toggleArrow = (e) => {
+                e.stopPropagation(); // Prevents the click event from reaching the body
+                setArrowUp(!isArrowUp);
         };
 
         return (
-                <header className="bg-white">
-                        <div
-                                className="flex justify-center lg:px-0 md:px-[74px] px-[67px] items-center font-semibold lg:font-med md:font-medium lg:text-base md:text-lg text-xl text-gray-900"
-                                onClick={toggleProductMenu}
-                        >
-                                Services
-                                <svg
-                                        className="h-5 w-5 flex-none text-black "
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        aria-hidden="true"
-                                >
-                                        <path
-                                                fillRule="evenodd"
-                                                d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                                clipRule="evenodd"
-                                        />
-                                </svg>
-                        </div>
+                <div>
+                        <body className="font-sans leading-normal tracking-normal">
+                                <nav className="relative">
+                                        <div className="container mx-auto flex justify-between">
+                                                <ul className="flex">
+                                                        <li className="hoverable relative">
+                                                                <div className='flex items-center'>
+                                                                        <div className="relative block">
+                                                                                Services
+                                                                        </div>
+                                                                        <svg
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                xmlnsXlink="http://www.w3.org/1999/xlink"
+                                                                                version="1.1"
+                                                                                x="0px"
+                                                                                y="0px"
+                                                                                viewBox="0 0 24 24"
+                                                                                className="ml-2 h-6 w-4 text-gray-600 font-extrabold"
+                                                                                onClick={(e) => {
+                                                                                        toggleArrow(e);
+                                                                                }}
+                                                                        >
+                                                                                <path d="M12 21.35l-1.45-1.41L4 12.47l1.41-1.41L12 18.47l6.59-6.59L20 12.47l-8 8.88z" />
+                                                                        </svg>
+                                                                </div>
 
-                        {isProductMenuOpen && (
-                                <div
-                                        className="absolute lg:left-[835px] md:left-12 left-4 lg:top-20 z-10 lg:w-screen lg:max-w-[490px] md:max-w-2xl max-w-[280px] w-screen md:w-screen bg-white shadow-2xl rounded ring-1 ring-gray-200"
-                                >
-                                        <div className="bg-white font-medium overflow-x-auto">
-                                                <ul className="grid grid-cols-3 gap-4 mx-">
-                                                        {advantages.map((v, i) => (
-                                                                <li key={i} className="w-16 py-6 mx-12 flex flex-col items-center">
-                                                                        <Link to=''>
-                                                                                <img
-                                                                                        src={v.imageUrl}
-                                                                                        alt={v.label}
-                                                                                        loading="lazy"
-                                                                                        className="mx-auto mb-2"
-                                                                                />
-                                                                                <h2
-                                                                                        className="py-1 text-[0.6rem] text-black font-medium inline"
-                                                                                        dangerouslySetInnerHTML={{ __html: v.label }}
-                                                                                />
-                                                                        </Link>
-                                                                </li>
-                                                        ))}
+                                                                <div
+                                                                        className={`p-6 mega-menu mb-16 sm:mb-0 shadow-2xl bg-white text-black ${isArrowUp ? 'arrow-up' : ''}`}
+                                                                        onClick={(e) => {
+                                                                                e.stopPropagation();
+                                                                        }}
+                                                                >
+                                                                        <div className="container mx-auto w-full flex flex-wrap justify-between ">
+                                                                                <div className="bg-white font-medium overflow-x-auto">
+                                                                                        <ul className="grid grid-cols-3 gap-4 mx-">
+                                                                                                {advantages.map((v, i) => (
+                                                                                                        <li
+                                                                                                                key={i}
+                                                                                                                className="w-16 py-6 mx-12 flex flex-col items-center"
+                                                                                                        >
+                                                                                                                <Link to={v.link}>
+                                                                                                                        <img
+                                                                                                                                src={v.imageUrl}
+                                                                                                                                alt={v.label}
+                                                                                                                                loading="lazy"
+                                                                                                                                className="mx-auto mb-2"
+                                                                                                                        />
+                                                                                                                        <h2
+                                                                                                                                className="py-1 text-[0.6rem] text-black font-medium inline"
+                                                                                                                                dangerouslySetInnerHTML={{ __html: v.label }}
+                                                                                                                        />
+                                                                                                                </Link>
+                                                                                                        </li>
+                                                                                                ))}
+                                                                                        </ul>
+                                                                                </div>
+                                                                        </div>
+                                                                </div>
+                                                                <div
+                                                                        className={`absolute w-0 h-0 border-4 border-solid border-transparent border-black ${isArrowUp ? 'border-t-0 border-b-4' : 'border-t-4 border-b-0'
+                                                                                }`}
+                                                                        style={{ top: '50%', right: '15px', transform: 'translateY(-50%)' }}
+                                                                        onClick={(e) => {
+                                                                                toggleArrow(e);
+                                                                        }}
+                                                                ></div>
+                                                        </li>
                                                 </ul>
                                         </div>
-                                </div>
-                        )}
-                </header>
+                                </nav>
+                        </body>
+                </div>
         );
-}
+};
 
-export default Navbar;
+export default Services;

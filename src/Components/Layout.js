@@ -9,7 +9,7 @@ function Layout({ children }) {
         return (
                 <div>
                         <Header />
-                        <SidebarIcons />
+                        {/* <SidebarIcons /> */}
                         {children}
                         <Footer />
                 </div>
