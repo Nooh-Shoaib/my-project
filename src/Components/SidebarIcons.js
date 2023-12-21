@@ -19,7 +19,7 @@ export default function SidebarIcons() {
                         </div>
                         <div>
                                 <Link to={phone_number} target="_blank">
-                                        <i class="fa-brands fa-whatsapp sidebar-icons bg-green-600 text-white text-2xl px-2.5 py-1"></i>
+                                        <i className="fa-brands fa-whatsapp sidebar-icons bg-green-600 text-white text-2xl px-2.5 py-1"></i>
                                 </Link>
                         </div>
                         <div>

@@ -54,12 +54,13 @@ const Services = () => {
         const [isArrowUp, setArrowUp] = useState(false);
 
         const toggleArrow = (e) => {
-                e.stopPropagation(); // Prevents the click event from reaching the body
+                e.stopPropagation();
                 setArrowUp(!isArrowUp);
         };
 
         return (
                 <div>
+
                         <body className="font-sans leading-normal tracking-normal">
                                 <nav className="relative">
                                         <div className="container mx-auto flex justify-between">
@@ -95,22 +96,21 @@ const Services = () => {
                                                                                 <div className="bg-white font-medium overflow-x-auto">
                                                                                         <ul className="grid grid-cols-3 gap-4 mx-">
                                                                                                 {advantages.map((v, i) => (
-                                                                                                        <li
-                                                                                                                key={i}
-                                                                                                                className="w-16 py-6 mx-12 flex flex-col items-center"
-                                                                                                        >
-                                                                                                                <Link to={v.link}>
-                                                                                                                        <img
-                                                                                                                                src={v.imageUrl}
-                                                                                                                                alt={v.label}
-                                                                                                                                loading="lazy"
-                                                                                                                                className="mx-auto mb-2"
-                                                                                                                        />
-                                                                                                                        <h2
-                                                                                                                                className="py-1 text-[0.6rem] text-black font-medium inline"
-                                                                                                                                dangerouslySetInnerHTML={{ __html: v.label }}
-                                                                                                                        />
-                                                                                                                </Link>
+                                                                                                        <li key={i} className="w-16 py-6 mx-12 flex flex-col items-center">
+                                                                                                                <div>
+                                                                                                                        <Link to={v.link}>
+                                                                                                                                <img
+                                                                                                                                        src={v.imageUrl}
+                                                                                                                                        alt={v.label}
+                                                                                                                                        loading="lazy"
+                                                                                                                                        className="mx-auto mb-2"
+                                                                                                                                />
+                                                                                                                                <h2
+                                                                                                                                        className="py-1 text-[0.6rem] text-black font-medium inline"
+                                                                                                                                        dangerouslySetInnerHTML={{ __html: v.label }}
+                                                                                                                                />
+                                                                                                                        </Link>
+                                                                                                                </div>
                                                                                                         </li>
                                                                                                 ))}
                                                                                         </ul>

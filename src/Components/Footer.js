@@ -16,24 +16,6 @@ let categories = [
         { label: 'SEO', link: '/' },
 ];
 
-const Footercategories = () => {
-        return (
-                <div>
-                        <ul>
-                                {categories.map((v, i) => {
-                                        return (
-                                                <li
-                                                        key={i}
-                                                        className="text-white font-semibold mx-2 md:text-center mb-3 lg:text-start text-center "
-                                                >
-                                                        <Link to={v.link}>{v.label}</Link>
-                                                </li>
-                                        );
-                                })}
-                        </ul>
-                </div>
-        );
-};
 
 const informationLinks = [
         { label: 'About Us', link: '/' },
@@ -51,26 +33,26 @@ const Footer = ({ category, info }) => {
 
         return (
                 <footer className="bg-[#202020]">
-                        <div className="flex justify-start space-x-[360px] py-10 px-36 border-b border-gray-500">
+                        <div className="lg:flex justify-start lg:space-x-[360px] py-10 lg:px-36 border-b border-gray-500">
                                 <div>
-                                        <div className="flex space-x-3 py-1.5">
+                                        <div className="flex space-x-3 py-1.5 mx-3 lg:mx-0">
                                                 <img src="https://thecustomwebsites.com/wp-content/uploads/2023/05/usa.png" alt="" className="w-10 h-7" />
                                                 <span className="text-white font-medium text-2xl">USA</span>
                                         </div>
-                                        <p className="text-white font-normal text-base py-1.5">(213) 416-7355</p>
-                                        <p className="text-white font-normal text-base py-1.5">750 West Hampden Avenue Denver CO</p>
+                                        <p className="text-white font-normal lg:text-base text-lg py-1.5 mx-3 lg:mx-0">(213) 416-7355</p>
+                                        <p className="text-white font-normal lg:text-base text-lg py-1.5 mx-3 lg:mx-0">750 West Hampden Avenue Denver CO</p>
                                 </div>
                                 <div className="">
-                                        <div className="flex space-x-3 py-1.5 ">
+                                        <div className="flex space-x-3 py-1.5 mx-3 lg:mx-0 ">
                                                 <img src="https://thecustomwebsites.com/wp-content/uploads/2023/05/uk.png" alt="" className="w-10 h-7" />
                                                 <span className="text-white font-medium text-2xl">UK</span>
                                         </div>
-                                        <p className="text-white font-normal text-base py-1.5">+447425471610</p>
-                                        <p className="text-white font-normal text-base py-1.5">27 Saint Andrews Drive Flat no. 3/4, Glasgow, G41 5JN</p>
+                                        <p className="text-white font-normal lg:text-base text-lg py-1.5 mx-3 lg:mx-0">+447425471610</p>
+                                        <p className="text-white font-normal lg:text-base text-lg py-1.5 mx-3 lg:mx-0">27 Saint Andrews Drive Flat no. 3/4, Glasgow, G41 5JN</p>
                                 </div>
                         </div>
-                        <section className="lg:grid md:grid grid-cols-4 px-28">
-                                <div className="mr-7">
+                        <section className="lg:grid md:grid grid-cols-4 lg:px-28">
+                                <div className="lg:mr-7">
                                         <ul className="">
                                                 <li>
                                                         <Link to="/">
@@ -81,12 +63,12 @@ const Footer = ({ category, info }) => {
                                                                 />
                                                         </Link>
                                                 </li>
-                                                <p className="text-white my-1.5 font-semibold text-lg">Subscribe us!</p>
-                                                <div className="         ">
+                                                <div className="lg:mx-0 mx-3">
+                                                        <p className="text-white my-1.5 font-semibold text-lg">Subscribe us!</p>
                                                         <input
                                                                 type="email"
                                                                 placeholder="Email here"
-                                                                className="px-3 py-3 md:w-24 w-60 lg:w-60 focus outline-none focus:ring-1 placeholder-slate-500 rounded-l-lg"
+                                                                className="px-3 py-3 md:w-24 w-52 lg:w-60 focus outline-none focus:ring-1 placeholder-slate-500 rounded-l-lg"
                                                         />
                                                         <button className="bg-white px-3  py-3 rounded-r-lg">
                                                                 <span>
@@ -94,10 +76,10 @@ const Footer = ({ category, info }) => {
                                                                 </span>
                                                         </button>
                                                 </div>
-                                                <p className="mt-8 text-white md:text-center lg:text-start text-center text-sm lg:text-[1.1rem]  md:text-base">
+                                                <p className="mt-8 text-white md:text-center lg:text-start text-start lg:mx-0 mx-3 text-sm lg:text-[1.1rem]  md:text-base">
                                                         Follow us on social media to get more updates about our services.
                                                 </p>
-                                                <li className="lg:space-x-6 space-x-6 md:space-x-4 mt-4  flex justify-center lg:justify-normal">
+                                                <li className="lg:space-x-6 space-x-6 md:space-x-4 mt-4  flex justify-start lg:mx-0 mx-3 lg:justify-start">
                                                         <Link to="https://www.facebook.com/TheCustomWebsites/" target="_blank">
                                                                 <i className="fa-brands fa-facebook-f text-white text-3xl "></i>
                                                         </Link>
@@ -112,44 +94,44 @@ const Footer = ({ category, info }) => {
                                 </div>
                                 <div>
                                         <ul>
-                                                <h2 className="lg:text-3xl text-3xl md:text-3xl lg:text-start text-center font-medium  md:text-center text-white mt-5 mb-5">
+                                                <h2 className="lg:text-3xl text-3xl md:text-3xl lg:text-start text-start lg:mx-0 mx-3 font-medium  md:text-center text-white mt-5 mb-5">
                                                         Information
                                                 </h2>
                                                 {informationLinks.map((link, index) => (
-                                                        <li key={index} className="flex lg:justify-normal justify-center mt-3">
+                                                        <li key={index} className="flex lg:justify-normal justify-start lg:mx-0 mx-3 mt-3">
                                                                 <Link to={link.link}>
                                                                         <div className="text-white ">{link.label}</div>
                                                                 </Link>
                                                         </li>
                                                 ))}
                                         </ul>
-                                        <button className="btn py-2.5 px-2 rounded-md font-semibold border-2 border-white bg-white text-black hover:bg-transparent hover:text-white my-3 text-lg">Schedule A meeting</button>
+                                        <button className="btn py-2.5 px-2 rounded-md font-semibold border-2 mx-3 lg:mx-0 border-white bg-white text-black hover:bg-transparent hover:text-white my-3 text-lg">Schedule A meeting</button>
                                         <div>
-                                                <button className=" py-2.5 px-4 rounded-lg font-semibold border-2 border-white bg-transparent  my-3 text-white"><i className="fa-solid fa-cloud-arrow-down pr-2"></i>Company Profile</button>
+                                                <button className=" py-2.5 px-4 rounded-lg font-semibold border-2 mx-3 lg:mx-0 border-white bg-transparent  my-3 text-white"><i className="fa-solid fa-cloud-arrow-down pr-2"></i>Company Profile</button>
                                         </div>
                                 </div>
                                 <div>
-                                        <h2 className="text-3xl text-white font-medium mt-5 mb-7 md:text-center lg:text-start text-center">
+                                        <h2 className="text-3xl text-white font-medium mt-5 mb-7 md:text-center text-start mx-3 lg:mx-0">
                                                 {category}
                                         </h2>
                                         <ul>
                                                 {categories.map((category, index) => (
-                                                        <li key={index} className="text-white font-semibold  md:text-center mb-3 lg:text-start text-center">
+                                                        <li key={index} className="text-white font-semibold  md:text-center mb-3 text-start mx-3 lg:mx-0">
                                                                 <Link to={category.link}>{category.label}</Link>
                                                         </li>
                                                 ))}
                                         </ul>
                                 </div>
                                 <div>
-                                        <h2 className="text-3xl text-white font-medium mt-5 mb-5  md:text-center lg:text-start text-center">
+                                        <h2 className="text-3xl text-white font-medium mt-5 mb-5  md:text-center text-start mx-3 lg:mx-0">
                                                 {info}
                                         </h2>
-                                        <div className="text-white pb-8 text-[1.1rem]" dangerouslySetInnerHTML={{ __html: text }}></div>
-                                        <button className="py-3 px-4 rounded-lg font-semibold border-2 border-white bg-white text-black hover:bg-transparent hover:text-white my-5">
+                                        <div className="text-white pb-8 text-[1.1rem] mx-3 lg:mx-0" dangerouslySetInnerHTML={{ __html: text }}></div>
+                                        <button className="py-3 px-4 rounded-lg font-semibold border-2  border-white bg-white text-black hover:bg-transparent hover:text-white my-5 mx-3 lg:mx-0">
                                                 Customer Service
                                         </button>
                                         <Link to='https://play.google.com/store/apps/details?id=com.thecustomwebsites&pli=1'>
-                                                <img src={playstoreImg} alt="playstore" className="" />
+                                                <img src={playstoreImg} alt="playstore" className="mx-3 lg:mx-0" />
                                         </Link>
                                 </div>
                         </section>

@@ -24,9 +24,9 @@ const Company = () => {
                                                 <ul className="flex">
                                                         <li className="group relative">
                                                                 <div className="flex items-center">
-                                                                        <Link to="#" className="relative block">
+                                                                        <div className="relative cursor-pointer block">
                                                                                 Company
-                                                                        </Link>
+                                                                        </div>
                                                                         <svg
                                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                                 xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -60,8 +60,8 @@ const Company = () => {
                                                                                                         </Link>
                                                                                                 ))}
                                                                                                 <div>
-                                                                                                        <a
-                                                                                                                href="https://thecustomwebsites.com/wp-content/uploads/2023/05/Presentation-1.pdf"
+                                                                                                        <Link
+                                                                                                                to="https://thecustomwebsites.com/wp-content/uploads/2023/05/Presentation-1.pdf"
                                                                                                                 target="_blank"
                                                                                                                 rel="noopener noreferrer"
                                                                                                         >
@@ -71,7 +71,7 @@ const Company = () => {
                                                                                                                 >
                                                                                                                         Company Profile
                                                                                                                 </button>
-                                                                                                        </a>
+                                                                                                        </Link>
                                                                                                 </div>
                                                                                         </ul>
                                                                                 </div>
