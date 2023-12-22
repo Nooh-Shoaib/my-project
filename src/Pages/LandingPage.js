@@ -1,12 +1,13 @@
 import React from 'react'
+import HeroSection from '../Components/HeroSection'
 import Layout from '../Components/Layout'
-import SidebarIcons from '../Components/SidebarIcons'
-import SidebarMenu from '../Components/SidebarMenu'
+import SubmitForm from '../Components/SubmitForm'
 const Home = () => {
         return (
                 <div>
                         <Layout>
-                                <SidebarMenu />
+                                <HeroSection />
+                                <SubmitForm />
                         </Layout>
                 </div>
         )

@@ -1,91 +1,66 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Services from "./Services";
 import Company from './Company';
+import Services from './Services';
+import PropTypes from 'prop-types';
 
-// Configurations
-const contactInfo = [
-        { icon: "fa fa-phone", link: "tel:(213)%20416-7355%20", text: "(213) 416-7355" },
-        { icon: "fa fa-envelope", link: "mailto:sales@thecustomwebsites.com", text: "sales@thecustomwebsites.com" },
-];
+const Header = ({ services, company }) => {
+        const contactInfo = [
+                { type: 'phone', value: '(213) 416-7355', link: 'tel:(213)%20416-7355%20' },
+                { type: 'email', value: 'sales@thecustomwebsites.com', link: 'mailto:sales@thecustomwebsites.com' },
+        ];
 
-const navigationItems = [
-        { text: 'Get Free Mockup Now!', link: '/' },
-        { text: <Services /> }, // Assuming #services is the section ID
-        { text: 'Portfolio', link: '/portfolio' },
-        { text: <Company /> },
-];
-
-const locationInfo = { icon: 'fa-solid fa-location-dot', text: '750 West Hampden Avenue Denver CO' };
-
-const logoUrl = 'https://thecustomwebsites.com/wp-content/uploads/2023/04/logo.png';
-
-// Generic component for rendering a list of items
-const ListItems = ({ items, renderItem }) => (
-        <ul className="flex mt-4">
-                {items.map((item, index) => (
-                        <li key={index} className="px-5">
-                                {renderItem(item)}
-                        </li>
-                ))}
-        </ul>
-);
-
-const renderContactItem = (item) => (
-        <Link to={item.link} target="_blank">
-                <i className={`${item.icon} icon_nav text-xl`}></i>
-                &nbsp; <span className="text-sm">{item.text}</span>
-        </Link>
-);
-
-const renderNavigationItem = (item) => (
-        <Link to={item.link}>{item.text}</Link>
-);
-
-export default function Header() {
         return (
                 <>
-                        <nav className="hidden lg:block border-b">
-                                <div className="py-1">
-                                        <div className="flex justify-between px-24 h-14 font-sans">
-                                                <div>
-                                                        <ListItems items={contactInfo} renderItem={renderContactItem} />
+                        <nav className="hidden lg:block border-b border-gray-400">
+                                <div className="">
+                                        <div className="flex justify-center items-center space-x-[720px] font-sans">
+                                                <div className='my-3'>
+                                                        {contactInfo.map((info, index) => (
+                                                                <Link key={index} to={info.link} target="_blank" className='pr-3'>
+                                                                        <i className={`fa-solid fa-${info.type} fa-xl`}></i>
+                                                                        &nbsp; <span className="text-xs ">{info.value}</span>
+                                                                </Link>
+                                                        ))}
                                                 </div>
-                                                <div className="flex items-start mt-4">
+                                                <div className="flex my-4">
                                                         <button>
                                                                 <span className="input-group-text border-0">
-                                                                        <i className={`fa-solid ${locationInfo.icon}`}></i>
+                                                                        <i className="fa-sharp fa-solid fa-location-dot fa-xl"></i>
                                                                 </span>
                                                         </button>
-                                                        <p className="text-sm">{locationInfo.text}</p>
+                                                        <p className="text-xs mt-0.5 px-1">750 West Hampden Avenue Denver CO</p>
                                                 </div>
                                         </div>
                                 </div>
                         </nav>
 
+
                         <nav className="hidden lg:block sticky top-0 bg-white z-20 shadow-md">
-                                <div className="h-24 flex items-center justify-between px-6">
-                                        <div className="text-black text-[15px] font-semibold flex items-center mx-20">
+                                <div className="flex items-center justify-between space-x px-28 py-4">
+                                        <div className="text-black text-[15px] font-semibold flex items-center mx-14">
                                                 <Link to='/'>
-                                                        <img src={logoUrl} alt="The Custom Websites" className="" />
+                                                        <img src="https://thecustomwebsites.com/wp-content/uploads/2023/04/logo.png" alt="The Custom Websites" className="w-48" />
                                                 </Link>
                                         </div>
-                                        <div className='flex items-center '>
-                                                <ListItems items={navigationItems} renderItem={renderNavigationItem} />
-                                                <button className='bg-black py-2 px-3 mx-12 text-white rounded-md'>Get a Free Quote</button>
+                                        <div className="ml-2 font-sans">
+                                                <div className='my-3 flex justify-center items-center '>
+                                                        <Link to='/' className='px-5 font-bold text-base'>Get Free Mockup Now!</Link>
+                                                        <span className='px-5 text-base cursor-pointer'><Services {...services} /></span>
+                                                        <Link to='/portfolio' className='px-5 text-base'>Portfolio</Link>
+                                                        <span className='px-5 text-base cursor-pointer'><Company {...company} /></span>
+                                                        <button className='bg-black py-3 px-8 mx-5 font-bold text-white rounded-md'>Get a Free Quote</button>
+                                                </div>
                                         </div>
                                 </div>
                         </nav>
                 </>
         );
-}
+};
 
-// Header.propTypes = {
-//         number: propTypes.string.isRequired,
-//         email: propTypes.string,
-// };
+Header.propTypes = {
+        services: PropTypes.object,
+        company: PropTypes.object,
+};
 
-// Header.defaultProps = {
-//         number: "(213) 416-7355",
-//         email: "sales@thecustomwebsites.com",
-// };
+export default React.memo(Header);

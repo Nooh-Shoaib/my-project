@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './Header';
-import SidebarIcons from './SidebarIcons';
 import Footer from './Footer';
+import Header from './Header';
+import SidebarMenu from './SidebarMenu';
 
 
 
@@ -9,6 +9,8 @@ function Layout({ children }) {
         return (
                 <div>
                         <Header />
+                        <SidebarMenu />
+
                         {/* <SidebarIcons /> */}
                         {children}
                         <Footer />

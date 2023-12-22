@@ -24,7 +24,7 @@ function Accordion({ title, contents }) {
         return (
                 <div className="">
                         <button
-                                className="text-left  flex transition-all duration-500"
+                                className="text-left flex transition-all duration-500"
                                 onClick={toggleAccordion}
                         >
                                 {title}
@@ -43,7 +43,7 @@ function Accordion({ title, contents }) {
                         </button>
 
                         <div
-                                className={`overflow-hidden rounded-md  transition-all duration-500 ${visible ? 'max-h-56' : 'max-h-0'}`}
+                                className={`overflow-hidden rounded-lg shadow-2xl transition-all w-52 my-1 duration-500 ${visible ? 'max-h-56' : 'max-h-0'}`}
                         >
                                 {contents.map((content, index) => (
                                         <p className="border-b text-center py-2 items-center" key={index}>{content}</p>
@@ -52,14 +52,15 @@ function Accordion({ title, contents }) {
                                         to="https://thecustomwebsites.com/wp-content/uploads/2023/05/Presentation-1.pdf"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className='flex justify-center'
                                 >
-                                        <button
-                                                type="button"
-                                                className="px-9 py-2 rounded-lg font-semibold border-2 text-sm border-white text-white bg-black my-4"
-                                        >
-                                                Company Profile
-                                        </button>
+                                        <div className='mx-3'>
+                                                <button
+                                                        type="button"
+                                                        className="px-9 py-2 rounded-lg font-semibold border-2 text-sm border-white text-white bg-black my-4"
+                                                >
+                                                        Company Profile
+                                                </button>
+                                        </div>
                                 </Link>
                         </div>
                 </div>

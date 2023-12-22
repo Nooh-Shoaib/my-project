@@ -22,6 +22,7 @@ function Accordion({ title, contents, openAccordion, setOpenAccordion }) {
                 }
         }, [isOpen]);
 
+
         return (
                 <div className="">
                         <button
@@ -44,10 +45,10 @@ function Accordion({ title, contents, openAccordion, setOpenAccordion }) {
                         </button>
 
                         <ul
-                                className="overflow-hidden rounded-md shadow-2xl"
+                                className="custom-scrollbar overflow-hidden rounded-md shadow-2xl"
                                 style={{
-                                        maxHeight: visible ? '1520px' : '0', // Adjust the height value as needed
-                                        transition: 'max-height 1s ease', // Adjust the duration (2s) and easing function as needed
+                                        maxHeight: visible ? '1520px' : '0',
+                                        transition: 'max-height 1s ease',
                                 }}
                         >
                                 {contents.map((v, i) => (
@@ -85,7 +86,7 @@ function Accordion({ title, contents, openAccordion, setOpenAccordion }) {
                                         </button>
                                 </div>
                         </ul>
-                </div>
+                </div >
         );
 }
 
