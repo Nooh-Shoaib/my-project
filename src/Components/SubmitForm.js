@@ -132,7 +132,7 @@ export default function SubmitForm() {
                                 {errorMessage && <p className="text-red-500 flex justify-center">{errorMessage}</p>}
                                 {currentStep === 1 && (
                                         <fieldset
-                                                className="rounded-xl shadow-xl bg-white mx-1 lg:mx-10 lg:w-96 md:w-52 h-[500px]"
+                                                className="rounded-xl shadow-xl bg-white mx-1 lg:mx-10 lg:w-96 md:w-52 h-[520px]"
                                                 style={{
                                                         backgroundImage: `url('https://thecustomwebsites.com/wp-content/uploads/2023/05/form-bg-1.png')`,
                                                         backgroundSize: 'cover',
@@ -149,7 +149,7 @@ export default function SubmitForm() {
                                                         </div>
                                                         {renderRadioOptions(projectTypes)}
                                                 </div>
-                                                <div className="flex justify-end px-3 py-5">
+                                                <div className="flex justify-end px-3 py-5 mt-20">
                                                         <button type="button" onClick={() => handleStepChange(2)} className="bg-black py-2.5 px-3.5 rounded-full">
                                                                 <i className="fa-solid fa-arrow-right text-white"></i>
                                                         </button>
@@ -175,7 +175,7 @@ export default function SubmitForm() {
                                                         </div>
                                                         {renderRadioOptions(niches)}
                                                 </div>
-                                                <div className="flex justify-center px-3 py-5 space-x-96 pl-7">
+                                                <div className="flex justify-center px-3 py-5 space-x-[400px] mt-20">
                                                         <button type="submit" onClick={() => handleStepChange(1)} className="bg-black py-2.5 px-3.5  rounded-full">
                                                                 <i className="fa-solid fa-arrow-left text-white"></i>
                                                         </button>
