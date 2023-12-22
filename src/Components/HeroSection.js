@@ -11,7 +11,7 @@ const HeroSection = () => {
         useEffect(() => {
                 const intervalId = setInterval(() => {
                         updateText();
-                }, 150);
+                }, 350);
 
                 return () => clearInterval(intervalId);
         }, [textIndex, wordIndex]);
