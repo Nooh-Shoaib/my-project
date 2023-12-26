@@ -2,35 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SubmitForm from './SubmitForm';
 
+
 const HeroSection = () => {
         const words = ['Created', 'Redesigned', 'Boost Up'];
         const [wordIndex, setWordIndex] = useState(0);
         const [textIndex, setTextIndex] = useState(0);
         const [displayedText, setDisplayedText] = useState('');
 
-        useEffect(() => {
-                const intervalId = setInterval(() => {
-                        updateText();
-                }, 350);
-
-                return () => clearInterval(intervalId);
-        }, [textIndex, wordIndex]);
-
         const updateText = () => {
                 const currentWord = words[wordIndex];
                 const currentText = currentWord.substring(0, textIndex + 1);
 
+                setTextIndex((prevIndex) => prevIndex + 1);
+
                 if (textIndex === currentWord.length) {
-                        setWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-                        setTextIndex(0);
-                        setDisplayedText('');
-                } else {
-                        setTextIndex((prevIndex) => prevIndex + 1);
+                        setTimeout(() => {
+                                setWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+                                setTextIndex(0);
+                                setDisplayedText('');
+                        }, 2000); // 1-second delay before moving to the next word
                 }
 
                 setDisplayedText(currentText);
         };
 
+        useEffect(() => {
+                const intervalId = setInterval(updateText, 350);
+
+                return () => clearInterval(intervalId);
+        }, [wordIndex, textIndex]);
         return (
                 <div
                         style={{
