@@ -20,7 +20,7 @@ const HeroSection = () => {
                                 setWordIndex((prevIndex) => (prevIndex + 1) % words.length);
                                 setTextIndex(0);
                                 setDisplayedText('');
-                        }, 2000); // 1-second delay before moving to the next word
+                        }, 2000);
                 }
 
                 setDisplayedText(currentText);
