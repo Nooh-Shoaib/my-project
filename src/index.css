@@ -2,115 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.sidebar-icons {
-  transition: padding 0.3s ease-in-out;
-}
-
-.sidebar-icons:hover {
-  padding-right: 24px;
-  margin-left: 10px;
-}
-
-.icon-bg {
-  color: #fff;
-  font-size: 2xl;
-  border-radius: 4px;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 1s ease-in-out;
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 1s ease-in-out;
-}
-
-.animate-scale-in {
-  animation: scaleIn 1s ease-in-out;
-}
-
 .mega-menu {
   opacity: 0;
   visibility: hidden;
@@ -178,34 +69,41 @@ body::-webkit-scrollbar {
   background: transparent;
 }
 
-input[type="radio"]:checked {
-  color: #1a202c;
+.checkbox-label {
+  position: relative;
+  padding-left: 2em;
+  cursor: pointer;
 }
 
-input[type="radio"] {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  outline: none;
-  border: 2px solid #4a5568;
+.checkbox-label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1em;
+  height: 1em;
+  border: 1px solid black;
   border-radius: 50%;
-  width: 1.2em;
-  height: 1.2em;
-  margin-right: 0.5em;
-  vertical-align: middle;
-  cursor: pointer;
   background-color: white;
 }
 
-input[type="radio"]:checked {
-  background-color: #1a202c;
+.checkbox-label.checked::before {
+  background-color: black;
+  border-color: black;
 }
 
-.word-transition {
-  opacity: 1;
-  transition: opacity 2s ease;
-}
-
-.word-transition.hide {
+.checkbox-label::after {
+  content: '\2713';
+  position: absolute;
+  left: 0em;
+  top: -5px;
+  font-size: 1.2em;
+  color: white;
   opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.checkbox-label.checked::after {
+  opacity: 1;
+  color: rgb(255, 255, 255);
 }

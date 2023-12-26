@@ -112,19 +112,24 @@ export default function SubmitForm() {
                 return options.map((option, index) => (
                         <div key={index} className="col-span-1 space-y-2">
                                 <input
-                                        type="radio"
+                                        type="checkbox"
                                         id={`radioOption${index + 1}`}
                                         name="radioGroup"
-                                        className="form-radio h-4 w-4 transition duration-150 ease-in-out"
+                                        className="hidden" // hide the default checkbox
                                         checked={selectedOptions[currentStep] === option}
                                         onChange={() => handleRadioChange(option)}
                                 />
-                                <label htmlFor={`radioOption${index + 1}`} className="ml-2 text-gray-700 text-base">
+                                <label
+                                        htmlFor={`radioOption${index + 1}`}
+                                        className={`ml-2 text-gray-700 text-base checkbox-label ${selectedOptions[currentStep] === option ? 'checked' : ''
+                                                }`}
+                                >
                                         {option}
                                 </label>
                         </div>
                 ));
         };
+
 
         return (
                 <div className=" my-20">
