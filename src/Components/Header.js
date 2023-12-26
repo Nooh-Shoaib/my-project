@@ -18,8 +18,14 @@ const Header = ({ services, company }) => {
                                                 <div className='my-3'>
                                                         {contactInfo.map((info, index) => (
                                                                 <Link key={index} to={info.link} target="_blank" className='pr-3'>
+                                                                        {info.type === 'email' && (
+                                                                                <>
+                                                                                        <i className="fa-solid fa-envelope"></i>
+                                                                                        &nbsp;
+                                                                                </>
+                                                                        )}
                                                                         <i className={`fa-solid fa-${info.type} fa-xl`}></i>
-                                                                        &nbsp; <span className="text-xs ">{info.value}</span>
+                                                                        <span className="text-xs ">{info.value}</span>
                                                                 </Link>
                                                         ))}
                                                 </div>

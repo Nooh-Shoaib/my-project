@@ -5,7 +5,7 @@ const Company = () => {
         const [isArrowUp, setArrowUp] = useState(false);
 
         const toggleArrow = (e) => {
-                e.stopPropagation(); // Prevents the click event from reaching the body
+                e.stopPropagation();
                 setArrowUp(!isArrowUp);
         };
 
@@ -43,12 +43,12 @@ const Company = () => {
                                                         </div>
 
                                                         <div
-                                                                className={`p-6 dropdown my-4 absolute top-10 left-[900px]  shadow-2xl bg-white text-black ${isArrowUp ? 'arrow-up' : ''}`}
+                                                                className={`p-6 dropdown my-2 absolute top-10 right-full shadow-2xl bg-white text-black ${isArrowUp ? 'arrow-up' : ''}`}
                                                                 onClick={(e) => {
                                                                         e.stopPropagation();
                                                                 }}
                                                         >
-                                                                <div className="container mx-auto w-full flex flex-wrap justify-between ">
+                                                                <div className="container mx-auto w-full flex flex-wrap justify-between">
                                                                         <div className="bg-white font-medium overflow-x-auto">
                                                                                 <ul className="space-y-2">
                                                                                         {menuItems.map((item, index) => (
@@ -78,7 +78,7 @@ const Company = () => {
                                                         </div>
                                                         <div
                                                                 className={`absolute w-0 h-0 border-4 border-solid border-transparent border-black ${isArrowUp ? 'border-t-0 border-b-4' : 'border-t-4 border-b-0'}`}
-                                                                style={{ top: '50%', right: '15px', transform: 'translateY(-50%)' }}
+                                                                style={{ top: '50%', left: '15px', transform: 'translateY(-50%)' }}
                                                                 onClick={(e) => {
                                                                         toggleArrow(e);
                                                                 }}

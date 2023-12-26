@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SubmitForm from './SubmitForm';
 
+const backgroundUrl = 'https://thecustomwebsites.com/wp-content/uploads/2023/05/form-bg-1.png';
+const heading = "Let's Discuss Your Project";
 
 const HeroSection = () => {
         const words = ['Created', 'Redesigned', 'Boost Up'];
@@ -34,22 +36,24 @@ const HeroSection = () => {
         return (
                 <div
                         style={{
-                                backgroundImage: `url('https://thecustomwebsites.com/wp-content/uploads/2023/05/custom-website-bg.jpg')`,
+                                backgroundImage: 'url("https://thecustomwebsites.com/wp-content/uploads/2023/05/custom-website-bg.jpg")',
+                                backgroundPosition: 'bottom center',
+                                backgroundRepeat: 'no-repeat',
                                 backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                height: '500px',
+                                height: '595px',
                         }}
+
                         className="hero-container"
                 >
-                        <div className="py-36 px-20">
-                                <h1 className="text-white text-4xl leading-normal px-6 fade-in">
+                        <div className="py-48 px-32">
+                                <h1 className="text-white text-[2.6rem] leading-normal px-6 fade-in">
                                         Let's Make <br />
                                         Your Project My{' '}
                                         <strong className="word-transition">{displayedText}</strong>
                                 </h1>
                                 <div className="flex px-5 space-x-6 relative pt-6">
-                                        <button className="btn py-2.5 px-2 rounded-md font-semibold border-2 mx-3 lg:mx-0 border-white bg-white text-black hover:bg-transparent hover:text-white my-3 text-lg">
-                                                Schedule A meeting
+                                        <button className="btn py-2.5 px-3 rounded-md font-semibold border-2 mx-3 lg:mx-0 border-white bg-white text-black  my-3 text-lg">
+                                                Schedule a meeting Now!
                                         </button>
                                         <Link
                                                 to="https://thecustomwebsites.com/wp-content/uploads/2023/05/Presentation-1.pdf"
@@ -63,7 +67,7 @@ const HeroSection = () => {
                                 </div>
                         </div>
                         <div className="absolute top-32 right-24">
-                                <SubmitForm />
+                                <SubmitForm backgroundUrl={backgroundUrl} heading={heading} />
                         </div>
                 </div>
         );

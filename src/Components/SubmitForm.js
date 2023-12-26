@@ -29,17 +29,16 @@ const niches = [
 const inputFields = [
         { id: 'name', label: 'Full Name*', type: 'text' },
         { id: 'email', label: 'Email Address*', type: 'email' },
-        { id: 'number', label: 'Phone Number*', type: 'text' },
-        { id: 'url', label: 'Competitor URL*', type: 'url' },
+        { id: 'number', label: 'Phone Number', type: 'text' },
+        { id: 'url', label: 'Competitor URL', type: 'url' },
 ];
 
-export default function SubmitForm() {
+const SubmitForm = ({ backgroundUrl, heading }) => {
         const [currentStep, setCurrentStep] = useState(1);
         const [selectedOptions, setSelectedOptions] = useState({
                 1: '',
                 2: '',
         });
-
 
         const [formData, setFormData] = useState({
                 name: '',
@@ -85,8 +84,6 @@ export default function SubmitForm() {
                 console.log('Form Data:', formData);
         };
 
-
-
         const renderInputFields = () => {
                 return (
                         <div className="grid grid-cols-2 gap-4">
@@ -113,16 +110,15 @@ export default function SubmitForm() {
                         <div key={index} className="col-span-1 space-y-2">
                                 <input
                                         type="checkbox"
-                                        id={`radioOption${index + 1}`}
+                                        id={`checkboxOption${index + 1}`}
                                         name="radioGroup"
-                                        className="hidden" // hide the default checkbox
+                                        className="hidden"
                                         checked={selectedOptions[currentStep] === option}
                                         onChange={() => handleRadioChange(option)}
                                 />
                                 <label
-                                        htmlFor={`radioOption${index + 1}`}
-                                        className={`ml-2 text-gray-700 text-base checkbox-label ${selectedOptions[currentStep] === option ? 'checked' : ''
-                                                }`}
+                                        htmlFor={`checkboxOption${index + 1}`}
+                                        className={`ml-2 text-gray-700 text-base checkbox-label ${selectedOptions[currentStep] === option ? 'checked' : ''}`}
                                 >
                                         {option}
                                 </label>
@@ -130,81 +126,57 @@ export default function SubmitForm() {
                 ));
         };
 
-
         return (
-                <div className=" my-20">
+                <div className="my-20">
                         <form onSubmit={handleSubmit}>
                                 {errorMessage && <p className="text-red-500 flex justify-center">{errorMessage}</p>}
-                                {currentStep === 1 && (
-                                        <fieldset
-                                                className="rounded-xl shadow-xl bg-white mx-1 lg:mx-10 lg:w-96 md:w-52 h-[520px]"
-                                                style={{
-                                                        backgroundImage: `url('https://thecustomwebsites.com/wp-content/uploads/2023/05/form-bg-1.png')`,
-                                                        backgroundSize: 'cover',
-                                                        backgroundPosition: 'center',
-                                                        backgroundRepeat: 'no-repeat',
-                                                        height: '70vh',
-                                                }}
-                                        >                                                <div className="bg-[#202020]  rounded-t-lg text-white lg:w-[520px] md:w-[208px] w-full mb-3 h-12 lg:h-14 items-center flex justify-center lg:font-medium text-xl lg:text-2xl">
-                                                        Let's Discuss Your Project
-                                                </div>
-                                                <div className="grid grid-cols-2 gap-2 px-4 space-y-5">
-                                                        <div className="col-span-2 space-y-2">
-                                                                <h2 className="text-2xl">Select Your Project Type</h2>
+                                <fieldset
+                                        className="rounded-xl shadow-xl bg-white mx-1 lg:mx-10 lg:w-96 md:w-52 h-[66vh]"
+                                        style={{
+                                                backgroundImage: `url('${backgroundUrl}')`,
+                                                backgroundSize: 'cover',
+                                                backgroundPosition: 'center',
+                                                backgroundRepeat: 'no-repeat',
+                                        }}
+                                >
+                                        <div className="bg-[#202020] rounded-t-lg text-white lg:w-[520px] md:w-[208px] w-full mb-3 h-12 lg:h-14 items-center flex justify-center lg:font-medium text-xl lg:text-2xl">
+                                                {heading}
+                                        </div>
+                                        {currentStep === 1 && (
+                                                <>
+                                                        <div className="grid grid-cols-2 gap-2 px-4 space-y-5">
+                                                                <div className="col-span-2 space-y-2">
+                                                                        <h2 className="text-2xl">Select Your Project Type<i className="fa-thin fa-asterisk text-red-500 text-3xl"></i></h2>
+                                                                </div>
+                                                                {renderRadioOptions(projectTypes)}
                                                         </div>
-                                                        {renderRadioOptions(projectTypes)}
-                                                </div>
-                                                <div className="flex justify-end px-3 py-5 mt-20">
-                                                        <button type="button" onClick={() => handleStepChange(2)} className="bg-black py-2.5 px-3.5 rounded-full">
-                                                                <i className="fa-solid fa-arrow-right text-white"></i>
-                                                        </button>
-                                                </div>
-                                        </fieldset>
-                                )}
-                                {currentStep === 2 && (
-                                        <fieldset
-                                                className="rounded-xl shadow-xl bg-white mx-1 lg:mx-10 lg:w-96 md:w-52 h-[500px]"
-                                                style={{
-                                                        backgroundImage: `url('https://thecustomwebsites.com/wp-content/uploads/2023/05/form-bg-1.png')`,
-                                                        backgroundSize: 'cover',
-                                                        backgroundPosition: 'center',
-                                                        backgroundRepeat: 'no-repeat',
-                                                        height: '70vh',
-                                                }}
-                                        >                                             <div className="bg-[#202020] rounded-t-lg text-white lg:w-[520px] md:w-[208px] w-full mb-3 h-12 lg:h-14 items-center flex justify-center lg:font-medium text-xl lg:text-2xl">
-                                                        Let's Discuss Your Project
-                                                </div>
-                                                <div className="grid grid-cols-2 gap-2 px-4 space-y-5">
-                                                        <div className="col-span-2 space-y-2">
-                                                                <h2 className="text-2xl">Great, in which niche?</h2>
+                                                        <div className="flex justify-end px-3 mt-16">
+                                                                <button type="button" onClick={() => handleStepChange(2)} className="bg-black py-2.5 px-3.5 rounded-full">
+                                                                        <i className="fa-solid fa-arrow-right text-white"></i>
+                                                                </button>
                                                         </div>
-                                                        {renderRadioOptions(niches)}
-                                                </div>
-                                                <div className="flex justify-center px-3 py-5 space-x-[400px] mt-20">
-                                                        <button type="submit" onClick={() => handleStepChange(1)} className="bg-black py-2.5 px-3.5  rounded-full">
-                                                                <i className="fa-solid fa-arrow-left text-white"></i>
-                                                        </button>
-                                                        <button type="submit" onClick={() => handleStepChange(3)} className="bg-black py-2.5 px-3.5  rounded-full">
-                                                                <i className="fa-solid fa-arrow-right text-white"></i>
-                                                        </button>
-                                                </div>
-                                        </fieldset>
-                                )}
-                                {currentStep === 3 && (
-                                        <>
-                                                <fieldset
-                                                        className="rounded-xl shadow-xl bg-white mx-1 lg:mx-10 lg:w-96 md:w-52 h-[500px]"
-                                                        style={{
-                                                                backgroundImage: `url('https://thecustomwebsites.com/wp-content/uploads/2023/05/form-bg-1.png')`,
-                                                                backgroundSize: 'cover',
-                                                                backgroundPosition: 'center',
-                                                                backgroundRepeat: 'no-repeat',
-                                                                height: '70vh',
-                                                        }}
-                                                >
-                                                        <div className="bg-[#202020] rounded-t-lg text-white lg:w-[520px] md:w-[208px] w-full mb-3 h-12 lg:h-14 items-center flex justify-center lg:font-medium text-xl lg:text-2xl">
-                                                                Let's Discuss Your Project
+                                                </>
+                                        )}
+                                        {currentStep === 2 && (
+                                                <>
+                                                        <div className="grid grid-cols-2 gap-2 px-4 space-y-5">
+                                                                <div className="col-span-2 space-y-2">
+                                                                        <h2 className="text-2xl">Great, in which niche?<i className="fa-thin fa-asterisk text-red-500 text-3xl"></i></h2>
+                                                                </div>
+                                                                {renderRadioOptions(niches)}
                                                         </div>
+                                                        <div className="flex justify-center px-3 space-x-[400px] mt-16">
+                                                                <button type="submit" onClick={() => handleStepChange(1)} className="bg-black py-2.5 px-3.5  rounded-full">
+                                                                        <i className="fa-solid fa-arrow-left text-white"></i>
+                                                                </button>
+                                                                <button type="submit" onClick={() => handleStepChange(3)} className="bg-black py-2.5 px-3.5  rounded-full">
+                                                                        <i className="fa-solid fa-arrow-right text-white"></i>
+                                                                </button>
+                                                        </div>
+                                                </>
+                                        )}
+                                        {currentStep === 3 && (
+                                                <>
                                                         <div>
                                                                 <h2 className="text-center text-lg pb-8 pt-2 text-gray-500">Let us know you & your estimations</h2>
                                                         </div>
@@ -214,14 +186,14 @@ export default function SubmitForm() {
                                                         <UploadFile />
                                                         <div>
                                                                 <textarea
-                                                                        className=" border placeholder:px-3 py-2 mx-2 w-[270px] md:w-48 h-24 lg:w-[502px]"
+                                                                        className="border placeholder:px-3 py-2 mx-2 w-[270px] md:w-48 h-24 lg:w-[502px]"
                                                                         placeholder="Any Message? Write here...."
                                                                         name="message"
                                                                         value={formData.message}
                                                                         onChange={handleChange}
                                                                 ></textarea>
                                                         </div>
-                                                        <div className="flex justify-center px-3 py-5 space-x-80 p">
+                                                        <div className="flex justify-center px-3 py-2 space-x-80 ">
                                                                 <button type="submit" onClick={() => handleStepChange(2)} className="bg-black py-2.5 px-3.5  rounded-full">
                                                                         <i className="fa-solid fa-arrow-left text-white"></i>
                                                                 </button>
@@ -229,10 +201,12 @@ export default function SubmitForm() {
                                                                         Submit
                                                                 </button>
                                                         </div>
-                                                </fieldset>
-                                        </>
-                                )}
+                                                </>
+                                        )}
+                                </fieldset>
                         </form>
                 </div>
         );
-}
+};
+
+export default SubmitForm;

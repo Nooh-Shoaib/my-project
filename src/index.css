@@ -69,6 +69,8 @@ body::-webkit-scrollbar {
   background: transparent;
 }
 
+
+
 .checkbox-label {
   position: relative;
   padding-left: 2em;
@@ -106,4 +108,18 @@ body::-webkit-scrollbar {
 .checkbox-label.checked::after {
   opacity: 1;
   color: rgb(255, 255, 255);
+}
+
+
+.transition-height {
+  transition: height 0.5s ease-out;
+}
+
+.height-auto {
+  height: auto;
+}
+
+.height-0 {
+  height: 0;
+  overflow: hidden;
 }
