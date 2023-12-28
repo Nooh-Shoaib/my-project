@@ -12,7 +12,7 @@ const Header = ({ services, company }) => {
 
         return (
                 <>
-                        <nav className="hidden lg:block border-b border-gray-400">
+                        <nav className="hidden lg:block  border-b border-gray-400">
                                 <div className="">
                                         <div className="flex justify-center items-center space-x-[720px] font-sans">
                                                 <div className='my-3'>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const LatestTechnologies = () => {
+        const initialContentLength = window.innerWidth < 600 ? 150 : 300;
+        const [showFullContent, setShowFullContent] = useState(false);
         const icons = [
                 {
                         icon: (
@@ -27,13 +28,8 @@ const LatestTechnologies = () => {
                         ),
                 },
         ];
-
-        const heading = 'Latest Web Development Technologies 2023';
-        const initialContentLength = 300;
-        const [showFullContent, setShowFullContent] = useState(false);
-
         const content =
-                'Technology evolves quickly, therefore, web developers require to stay updated with the ongoing trends and developments, as it is one of the most crucial aspects for the success of business. Development Team at The Custom Website, use the most popular web development languages including PAWs and it acts like native mobile applications but are actually websites. This technology contains 36% higher conversion rates than other apps. The use of Dark-Theme UI makes your app and site 1005 responsive. We use it both in websites and mobile applications, since we know the fact that dark or night themed user interfaces are easy and safe for the eyes. Our team is skilled at using the most popular web development languages such as three main front-end coding languages including JavaScript, CSS, and HTML. Together, they produce the underlying scaffolding that web browsers use to render the web pages. Not only this, we are here to provide custom web design services to design a website on WordPress, PHP or other as per the need of the business. Our designers design your website with the 100% responsive and suitable themes of Joomla, Shopify, Drupal and many more.';
+                'Technology evolves quickly, therefore, web developers require to stay updated with the ongoing trends and developments, as it is one of the most crucial aspects for the success of business. Development Team at The Custom Website, use the most popular web development languages including PAWs and it acts like native mobile applications but are actually websites. This technology contains 36% higher conversion rates than other apps. The use of Dark-Theme UI makes your app and site 1005 responsive. We use it both in websites and mobile applications, since we know the fact that dark or night themed user interfaces are easy and safe for the eyes. Our team is skilled at using the most popular web development languages such as three main front-end coding languages including JavaScript, CSS, and HTML. Together, they produce the underlying scaffolding that web browsers use to render the web pages. Not only this, we are here to provide custom web design services to design a website on WordPress, PHP or other as per the need of the business. Our designers design your website with the 100% responsive and suitable themes of Joomla, Shopify, Drupal and many more.'
 
         const truncatedContent = showFullContent
                 ? content
@@ -45,25 +41,24 @@ const LatestTechnologies = () => {
 
         return (
                 <div className='py-7'>
-                        <h1 className='text-center text-4xl mb-2 font-semibold'>{heading}</h1>
+                        <h1 className='text-center lg:text-4xl text-3xl mb-2 font-semibold'>
+                                Latest Web Development Technologies 2023
+                        </h1>
                         <div className='flex justify-center space-x-4 py-3'>
-                                {icons.map((icon) => (
-                                        <React.Fragment key={icon}>
+                                {icons.map((icon, index) => (
+                                        <React.Fragment key={index}>
                                                 <hr className='w-12 mt-2' />
                                                 {icon.icon}
                                         </React.Fragment>
                                 ))}
                                 <hr className='w-12 mt-2' />
                         </div>
-                        <div className='text-center px-56 my-5 text-[1em] transition-max-height ease-in-out duration-300 overflow-hidden max-h-[500px]'>
+                        <div className='text-center lg:px-56 px-1 my-5 text-[1em] transition-max-height ease-in-out duration-300 overflow-hidden max-h-[500px]'>
                                 {truncatedContent}
                         </div>
                         {content.length > initialContentLength && (
                                 <div className='flex justify-center'>
-                                        <button
-                                                className='cursor-pointer'
-                                                onClick={toggleContent}
-                                        >
+                                        <button className='cursor-pointer' onClick={toggleContent}>
                                                 {showFullContent ? (
                                                         <>
                                                                 Show Less <i className='fas fa-chevron-up'></i>

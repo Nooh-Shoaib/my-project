@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import UploadFile from './UploadButton';
+import { useForm } from 'react-hook-form';  // Import the useForm hook
+
 
 const projectTypes = [
         'Custom Web Development',
@@ -35,6 +37,8 @@ const inputFields = [
 
 const SubmitForm = ({ backgroundUrl, heading }) => {
         const [currentStep, setCurrentStep] = useState(1);
+        const { state, handleSubmit } = useForm('mwkgeggy');
+
         const [selectedOptions, setSelectedOptions] = useState({
                 1: '',
                 2: '',
@@ -78,12 +82,6 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                 }));
         };
 
-        const handleSubmit = (e) => {
-                e.preventDefault();
-                // You can handle the form submission here, e.g., send the data to the server
-                console.log('Form Data:', formData);
-        };
-
         const renderInputFields = () => {
                 return (
                         <div className="grid grid-cols-2 gap-4">
@@ -118,7 +116,8 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                 />
                                 <label
                                         htmlFor={`checkboxOption${index + 1}`}
-                                        className={`ml-2 text-gray-700 text-base checkbox-label ${selectedOptions[currentStep] === option ? 'checked' : ''}`}
+                                        className={`ml-2 text-gray-700 text-base checkbox-label ${selectedOptions[currentStep] === option ? 'checked' : ''
+                                                }`}
                                 >
                                         {option}
                                 </label>
@@ -129,7 +128,9 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
         return (
                 <div className="my-20">
                         <form onSubmit={handleSubmit}>
-                                {errorMessage && <p className="text-red-500 flex justify-center">{errorMessage}</p>}
+                                {errorMessage && (
+                                        <p className="text-red-500 flex justify-center">{errorMessage}</p>
+                                )}
                                 <fieldset
                                         className="rounded-xl shadow-xl bg-white mx-1 lg:mx-10 lg:w-96 md:w-52 h-[66vh]"
                                         style={{
@@ -144,14 +145,21 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                         </div>
                                         {currentStep === 1 && (
                                                 <>
-                                                        <div className="grid grid-cols-2 gap-2 px-4 space-y-5">
+                                                        <div className="lg:grid lg:grid-cols-2 gap-2 px-4 space-y-5">
                                                                 <div className="col-span-2 space-y-2">
-                                                                        <h2 className="text-2xl">Select Your Project Type<i className="fa-thin fa-asterisk text-red-500 text-3xl"></i></h2>
+                                                                        <h2 className="text-2xl">
+                                                                                Select Your Project Type
+                                                                                <i className="fa-thin fa-asterisk text-red-500 text-3xl"></i>
+                                                                        </h2>
                                                                 </div>
                                                                 {renderRadioOptions(projectTypes)}
                                                         </div>
                                                         <div className="flex justify-end px-3 mt-16">
-                                                                <button type="button" onClick={() => handleStepChange(2)} className="bg-black py-2.5 px-3.5 rounded-full">
+                                                                <button
+                                                                        type="button"
+                                                                        onClick={() => handleStepChange(2)}
+                                                                        className="bg-black py-2.5 px-3.5 rounded-full"
+                                                                >
                                                                         <i className="fa-solid fa-arrow-right text-white"></i>
                                                                 </button>
                                                         </div>
@@ -159,17 +167,28 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                         )}
                                         {currentStep === 2 && (
                                                 <>
-                                                        <div className="grid grid-cols-2 gap-2 px-4 space-y-5">
+                                                        <div className="lg:grid lg:grid-cols-2 gap-2 px-4 space-y-5">
                                                                 <div className="col-span-2 space-y-2">
-                                                                        <h2 className="text-2xl">Great, in which niche?<i className="fa-thin fa-asterisk text-red-500 text-3xl"></i></h2>
+                                                                        <h2 className="text-2xl">
+                                                                                Great, in which niche?
+                                                                                <i className="fa-thin fa-asterisk text-red-500 text-3xl"></i>
+                                                                        </h2>
                                                                 </div>
                                                                 {renderRadioOptions(niches)}
                                                         </div>
                                                         <div className="flex justify-center px-3 space-x-[400px] mt-16">
-                                                                <button type="submit" onClick={() => handleStepChange(1)} className="bg-black py-2.5 px-3.5  rounded-full">
+                                                                <button
+                                                                        type="button"
+                                                                        onClick={() => handleStepChange(1)}
+                                                                        className="bg-black py-2.5 px-3.5  rounded-full"
+                                                                >
                                                                         <i className="fa-solid fa-arrow-left text-white"></i>
                                                                 </button>
-                                                                <button type="submit" onClick={() => handleStepChange(3)} className="bg-black py-2.5 px-3.5  rounded-full">
+                                                                <button
+                                                                        type="submit"
+                                                                        onClick={() => handleStepChange(3)}
+                                                                        className="bg-black py-2.5 px-3.5  rounded-full"
+                                                                >
                                                                         <i className="fa-solid fa-arrow-right text-white"></i>
                                                                 </button>
                                                         </div>
@@ -178,7 +197,9 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                         {currentStep === 3 && (
                                                 <>
                                                         <div>
-                                                                <h2 className="text-center text-lg pb-8 pt-2 text-gray-500">Let us know you & your estimations</h2>
+                                                                <h2 className="text-center text-lg pb-8 pt-2 text-gray-500">
+                                                                        Let us know you & your estimations
+                                                                </h2>
                                                         </div>
                                                         <div className="flex justify-center space-x-8 py-4">
                                                                 {renderInputFields()}
@@ -194,10 +215,17 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                                                 ></textarea>
                                                         </div>
                                                         <div className="flex justify-center px-3 py-2 space-x-80 ">
-                                                                <button type="submit" onClick={() => handleStepChange(2)} className="bg-black py-2.5 px-3.5  rounded-full">
+                                                                <button
+                                                                        type="button"
+                                                                        onClick={() => handleStepChange(2)}
+                                                                        className="bg-black py-2.5 px-3.5  rounded-full"
+                                                                >
                                                                         <i className="fa-solid fa-arrow-left text-white"></i>
                                                                 </button>
-                                                                <button type="submit" className="bg-black text-white py-1 px-3.5 text-lg">
+                                                                <button
+                                                                        type="submit"
+                                                                        className="bg-black text-white py-1 px-3.5 text-lg"
+                                                                >
                                                                         Submit
                                                                 </button>
                                                         </div>

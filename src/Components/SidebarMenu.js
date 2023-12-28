@@ -34,8 +34,8 @@ const SidebarMenu = () => {
 
 
         return (
-                <>
-                        <div className='flex lg:hidden space-x-36 md:space-x-[570px]   justify-center items-center h-20'>
+                <div className='bg-white sticky top-0 z-50'>
+                        <div className='flex lg:hidden  space-x-36 md:space-x-[570px]   justify-center items-center h-20'>
                                 <img src='https://thecustomwebsites.com/wp-content/uploads/2023/04/logo.png' alt='' className='w-28 md:w-36 h-8 md:h-10 ' />
                                 <i className="fa-solid fa-bars text-2xl" onClick={openNav}></i>
                         </div>
@@ -56,7 +56,7 @@ const SidebarMenu = () => {
                                         <button className='bg-black py-2 px-9 text-white rounded-md mx-3 my-6 font-bold text-lg'>Get a Free Quote</button>
                                 </div>
                         </div>
-                </>
+                </div>
         );
 };
 

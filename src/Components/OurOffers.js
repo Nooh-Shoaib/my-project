@@ -64,10 +64,10 @@ const sections = [
 
 const OurOffers = () => {
         return (
-                <div className='bg-[#F1F1F1] py-5'>
+                <div className='bg-[#F1F1F1] py-5 '>
                         <h1 className='text-center font-semibold text-4xl py-5'>What We Do?</h1>
                         {sections.map((section, index) => (
-                                <div className='flex justify-center py-3' key={index}>
+                                <div className='lg:flex md:flex md:justify-center lg:justify-center py-3 px-4  ' key={index}>
                                         <div
                                                 style={{
                                                         order: index % 2 === 0 ? 1 : 2,
@@ -75,26 +75,26 @@ const OurOffers = () => {
                                                         backgroundRepeat: 'no-repeat',
                                                         backgroundSize: 'cover',
                                                         backgroundPosition: 'center',
-                                                        height: '400px',
-                                                        width: '550px',
+
+
                                                 }}
-                                        ></div>
+                                                className='lg:w-[550px] w-[288px] md:w-[450px] lg:h-[400px]  h-[350px] lg:mx-0  '></div>
 
                                         <div
                                                 style={{
                                                         order: index % 2 === 0 ? 2 : 1,
                                                 }}
-                                                className='bg-white border-r-2 border-black w-[550px]  items-center relative'
+                                                className='bg-white border-r-2 border-black lg:w-[550px] md:w-[450px]  items-center relative'
                                         >
-                                                <h2 className='text-center py-4 font-semibold text-xl'>{section.title}</h2>
-                                                <hr style={{ width: '100%', height: '2px', background: 'gray', margin: '10px 0' }} />
-                                                <ul className='px-12 list-disc pt-0 my-3'>
+                                                <h2 className='text-center lg:py-4 font-semibold lg:text-xl py-4'>{section.title}</h2>
+                                                <hr className='w-[100%] h-[2px] bg-gray-400 lg:my-[10px]' />
+                                                <ul className='lg:px-12  list-disc pt-0 my-3 '>
                                                         {section.content.map((item, i) => (
-                                                                <li key={i}>{item}</li>
+                                                                <li className='lg:mx-0 mx-12' key={i}>{item}</li>
                                                         ))}
                                                 </ul>
-                                                <div className='text-center absolute bottom-7 container mx-auto'>
-                                                        <button className='border-2 border-black px-16 py-2 rounded transition-all font-semibold hover:font-bold hover:bg-black hover:text-white'>
+                                                <div className='text-center lg:absolute md:absolute bottom-1 flex justify-center lg:bottom-7 container mx-auto'>
+                                                        <button className='border-2 border-black lg:px-16 px-7 py-2 lg:my-0 my-3 rounded transition-all font-semibold hover:font-bold hover:bg-black hover:text-white'>
                                                                 {section.button}
                                                         </button>
                                                 </div>
@@ -106,4 +106,5 @@ const OurOffers = () => {
         );
 };
 
-export default OurOffers;       
+export default OurOffers;
+

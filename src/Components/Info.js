@@ -16,7 +16,7 @@ const Info = ({ heading }) => {
 
         return (
                 <div className='py-7'>
-                        <h1 className='text-center text-4xl mb-2 font-semibold'>{heading}</h1>
+                        <h1 className='text-center lg:text-4xl text-3xl  mb-2 font-semibold'>{heading}</h1>
                         <div className='flex justify-center space-x-4 py-3'>
                                 {icons.map(icon => (
                                         <React.Fragment key={icon}>
@@ -26,7 +26,7 @@ const Info = ({ heading }) => {
                                 ))}
                                 <hr className='w-12 mt-2' />
                         </div>
-                        <p className='text-justify px-44 my-5 text-[1em] container mx-auto'>
+                        <p className='lg:text-justify text-start lg:px-44 px-5 my-5 lg:text-[1em] text-base container mx-auto'>
                                 Let us make your online visibility possible since a custom build website is compulsory for your business promotion. Our professional{' '}
                                 <Link to='/' className='text-blue-500 hover:text-blue-700'>custom web design services</Link>{' '}
                                 are the ultimate options to make your business a brand in the world of{' '}
