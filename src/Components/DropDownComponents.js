@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-
 function Accordion({ title, contents, openAccordion, setOpenAccordion }) {
         const isOpen = openAccordion === title;
         const [visible, setVisible] = useState(false);
@@ -21,7 +20,6 @@ function Accordion({ title, contents, openAccordion, setOpenAccordion }) {
                         setVisible(false);
                 }
         }, [isOpen]);
-
 
         return (
                 <div className="">
@@ -86,20 +84,21 @@ function Accordion({ title, contents, openAccordion, setOpenAccordion }) {
                                         </button>
                                 </div>
                         </ul>
-                </div >
+                </div>
         );
 }
 
-function ServicesAccordion({ services }) {
-        const [openAccordion, setOpenAccordion] = useState(null);
-
+export function CompanyAccordion() {
         return (
                 <div className="bg-white">
                         <Accordion
-                                title="Services"
-                                contents={services}
-                                openAccordion={openAccordion}
-                                setOpenAccordion={setOpenAccordion}
+                                title="Company"
+                                contents={[
+                                        "About Us",
+                                        "FAQs",
+                                        "Customer Support",
+                                        "Blog",
+                                ]}
                         />
                 </div>
         );
@@ -153,6 +152,17 @@ const services = [
         },
 ];
 
-export default function App() {
-        return <ServicesAccordion services={services} />;
+export function ServicesAccordion() {
+        const [openAccordion, setOpenAccordion] = useState(null);
+
+        return (
+                <div className="bg-white">
+                        <Accordion
+                                title="Services"
+                                contents={services}
+                                openAccordion={openAccordion}
+                                setOpenAccordion={setOpenAccordion}
+                        />
+                </div>
+        );
 }

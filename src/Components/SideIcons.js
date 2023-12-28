@@ -9,7 +9,7 @@ let whatsapp = "https://api.whatsapp.com/send/?phone=%2B14109468181&text&type=ph
 let phone_number = "tel:+14108349965";
 let mail = "mailto:support@sireprinting.com";
 
-export default function SidebarIcons() {
+export default function SideIcons() {
         return (
                 <section className="fixed top-44 right-0 my-10 space-y-1 z-10 ">
                         <div>

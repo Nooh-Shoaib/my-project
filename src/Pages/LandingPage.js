@@ -2,14 +2,11 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import HeroSection from '../Components/HeroSection';
 import Layout from '../Components/Layout';
-import HowWork from '../Components/HowWork';
 import OurOffers from '../Components/OurOffers';
-import Info from '../Components/Info';
 import Portfolio from '../Components/Portfolio';
-import LatestTechnologies from '../Components/LatestTechnologies';
 import OwlCasrousel from '../Components/OwlCarousel';
-import Optimization from '../Components/Optimization';
-
+import { EcommerceSolution, HowWork, Info, LatestTechnologies } from '../Components/BussinessSection';
+import { Agile, Optimization } from '../Components/AgileAndOptimization';
 const Home = () => {
         return (
                 <div>
@@ -25,6 +22,8 @@ const Home = () => {
                                 <LatestTechnologies />
                                 <OwlCasrousel />
                                 <Optimization />
+                                <EcommerceSolution />
+                                <Agile />
                         </Layout>
                 </div>
         );

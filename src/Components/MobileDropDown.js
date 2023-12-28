@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import HamServices from './HamServices';
-import HamCompany from './HamCompany';
 import { Link } from 'react-router-dom';
+import { CompanyAccordion, ServicesAccordion } from './DropDownComponents';
 
-const SidebarMenu = () => {
+const MobileDropDown = () => {
         const [sidenavWidth, setSidenavWidth] = useState(0);
 
         const openNav = () => {
@@ -49,9 +48,9 @@ const SidebarMenu = () => {
                                         </div>
                                         <div className='mt-10 mx-4 leading-[70px]  '>
                                                 <Link to="/" className='text-base font-semibold'>Get Free Mockup Now!</Link>
-                                                <div className='text-base'><HamServices /></div>
+                                                <div className='text-base'><ServicesAccordion /></div>
                                                 <Link to="/" className='text-base'>Portfolio</Link>
-                                                <div className='text-base'><HamCompany /></div>
+                                                <div className='text-base'><CompanyAccordion /></div>
                                         </div>
                                         <button className='bg-black py-2 px-9 text-white rounded-md mx-3 my-6 font-bold text-lg'>Get a Free Quote</button>
                                 </div>
@@ -60,4 +59,4 @@ const SidebarMenu = () => {
         );
 };
 
-export default SidebarMenu;
+export default MobileDropDown;

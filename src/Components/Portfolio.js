@@ -26,7 +26,7 @@ const Portfolio = () => {
         return (
                 <div>
                         <div className='flex justify-center my-4'>
-                                <ul className='text-sm lg:flex  grid justify-items-center md:justify-center grid-cols-3 md:grid-cols-7 md:items-center px-5 md:px-3 lg:justify-center lg:space-x-10 rounded-full border lg:w-[1227px] w-[700px] lg:h-6 md:h-20 md:gap-y-1.5 items-center px-0.1'>
+                                <ul className='text-sm lg:flex  grid justify-items-center md:justify-center grid-cols-3 md:grid-cols-7 md:items-center px-5 md:px-3 lg:justify-between  rounded-full border lg:w-[1227px] w-[700px] lg:h-6 md:h-20 md:gap-y-1.5 items-center px-0.1'>
                                         {categories.map((category, index) => (
                                                 <NavLink
                                                         to='/'
