@@ -7,6 +7,9 @@ import Portfolio from '../Components/Portfolio';
 import OwlCasrousel from '../Components/OwlCarousel';
 import { EcommerceSolution, HowWork, Info, LatestTechnologies } from '../Components/BussinessSection';
 import { Agile, Optimization } from '../Components/AgileAndOptimization';
+import FAQS from '../Components/FAQS'
+import AnimatedCounter from '../Components/AnimatedCounter';
+import Testimonials from '../Components/Testimonials';
 const Home = () => {
         return (
                 <div>
@@ -24,6 +27,9 @@ const Home = () => {
                                 <Optimization />
                                 <EcommerceSolution />
                                 <Agile />
+                                <FAQS />
+                                {/* <AnimatedCounter /> */}
+                                <Testimonials />
                         </Layout>
                 </div>
         );

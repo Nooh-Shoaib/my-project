@@ -37,8 +37,9 @@ const inputFields = [
 
 const SubmitForm = ({ backgroundUrl, heading }) => {
         const [currentStep, setCurrentStep] = useState(1);
-        const { state, handleSubmit } = useForm('mwkgeggy');
+        const { handleSubmit } = useForm('mwkgeggy'); // Destructure only what you need
 
+        const state = {};
         const [selectedOptions, setSelectedOptions] = useState({
                 1: '',
                 2: '',
@@ -132,7 +133,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                         <p className="text-red-500 flex justify-center">{errorMessage}</p>
                                 )}
                                 <fieldset
-                                        className="rounded-xl shadow-xl bg-white mx-1 lg:mx-10 lg:w-96 md:w-52 h-[66vh]"
+                                        className="rounded-xl shadow-xl bg-white mx-5 lg:mx-10  lg:w-96 md:w-52 lg:h-[66vh] h-[110vh]"
                                         style={{
                                                 backgroundImage: `url('${backgroundUrl}')`,
                                                 backgroundSize: 'cover',
@@ -168,7 +169,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                         {currentStep === 2 && (
                                                 <>
                                                         <div className="lg:grid lg:grid-cols-2 gap-2 px-4 space-y-5">
-                                                                <div className="col-span-2 space-y-2">
+                                                                <div className="lg:col-span-2 space-y-2">
                                                                         <h2 className="text-2xl">
                                                                                 Great, in which niche?
                                                                                 <i className="fa-thin fa-asterisk text-red-500 text-3xl"></i>

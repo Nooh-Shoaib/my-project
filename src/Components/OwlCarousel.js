@@ -9,7 +9,7 @@ const Carousel = () => {
                 infinite: true,
                 speed: 500,
                 slidesToShow: 6,
-                slidesToScroll: 4,
+                slidesToScroll: 2,
                 autoplay: true,
                 innerWidth: 10,
                 autoplaySpeed: 2000,

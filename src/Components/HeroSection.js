@@ -11,30 +11,30 @@ const HeroSection = () => {
         const [textIndex, setTextIndex] = useState(0);
         const [displayedText, setDisplayedText] = useState('');
 
-        const updateText = () => {
-                const currentWord = words[wordIndex];
-                const currentText = currentWord.substring(0, textIndex + 1);
-
-                setTextIndex((prevIndex) => prevIndex + 1);
-
-                if (textIndex === currentWord.length) {
-                        setWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-                        setTextIndex(0);
-                        setDisplayedText('');
-                }
-
-                setDisplayedText(currentText);
-        };
-
         useEffect(() => {
+                const updateText = () => {
+                        const currentWord = words[wordIndex];
+                        const currentText = currentWord.substring(0, textIndex + 1);
+
+                        setTextIndex((prevIndex) => prevIndex + 1);
+
+                        if (textIndex === currentWord.length) {
+                                setWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+                                setTextIndex(0);
+                                setDisplayedText('');
+                        }
+
+                        setDisplayedText(currentText);
+                };
+
                 const intervalId = setInterval(updateText, 350);
 
                 return () => clearInterval(intervalId);
-        }, [wordIndex, textIndex]);
+        }, [wordIndex, textIndex, words]);
 
         return (
                 <div
-                        className="lg:h-[595] h-[800px] "
+                        className="lg:h-[595] h-[900px] "
                         style={{
                                 backgroundImage: 'url("https://thecustomwebsites.com/wp-content/uploads/2023/05/custom-website-bg.jpg")',
                                 backgroundPosition: 'bottom center',
@@ -49,7 +49,7 @@ const HeroSection = () => {
                                         <strong className="word-transition">{displayedText}</strong>
                                 </h1>
                                 <div className="flex flex-col md:flex-row md:space-x-6 relative pt-6">
-                                        <button className=" py-2.5 px-3 md:px-4 lg:px-5 rounded-md font-semibold border-2 mx-3 lg:mx-0 border-white bg-white text-black my-3 lg:text-lg text-base">
+                                        <button className=" py-2.5 px-3 md:px-4 lg:px-5 rounded-md border-2 mx-3 lg:mx-0 border-white bg-white text-black my-3 lg:text-lg text-base">
                                                 Schedule a meeting Now!
                                         </button>
                                         <Link

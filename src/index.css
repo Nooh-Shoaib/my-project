@@ -60,14 +60,14 @@
   z-index: 900;
 }
 
-body {
+/* body {
   overflow: auto;
 }
 
 body::-webkit-scrollbar {
-  width: 0;
-  background: transparent;
-}
+  width: 10px;
+  background: gray;
+} */
 
 
 
@@ -142,27 +142,4 @@ body::-webkit-scrollbar {
 
 .fade-in-button {
   animation: fadeIn 2s ease-in-out forwards;
-}
-
-/* YourCustomRadioStyles.css */
-
-/* Styles for the custom radio button */
-.custom-radio {
-  width: 12px;
-  height: 12px;
-  background-color: #ccc;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 10px;
-  /* Adjust the positioning as needed */
-  left: 50%;
-  transform: translateX(-50%);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-/* Styles for the active state of the custom radio button */
-.custom-radio.active {
-  background-color: #007bff;
-  /* Change to your desired active color */
 }
