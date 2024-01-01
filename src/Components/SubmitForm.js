@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import UploadFile from './UploadButton';
-import { useForm } from 'react-hook-form';  // Import the useForm hook
-
 
 const projectTypes = [
         'Custom Web Development',
@@ -37,7 +35,6 @@ const inputFields = [
 
 const SubmitForm = ({ backgroundUrl, heading }) => {
         const [currentStep, setCurrentStep] = useState(1);
-        const { handleSubmit } = useForm('mwkgeggy'); // Destructure only what you need
 
         const [selectedOptions, setSelectedOptions] = useState({
                 1: '',
@@ -67,7 +64,8 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                 setCurrentStep(step);
         };
 
-        const handleRadioChange = (option) => {
+        const handleRadioChange = (option, e) => {
+                e.persist();
                 setSelectedOptions((prevOptions) => ({
                         ...prevOptions,
                         [currentStep]: option,
@@ -82,9 +80,15 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                 }));
         };
 
+        const handleSubmit = (e) => {
+                e.preventDefault();
+                // Handle form submission logic here
+                handleStepChange(3);
+        };
+
         const renderInputFields = () => {
                 return (
-                        <div className="lg:grid lg:grid-cols-2 lg:gap-4 ">
+                        <div className="lg:grid lg:grid-cols-2 lg:gap-4 md:grid md:grid-cols-2 md:gap-4 ">
                                 {inputFields.map((field) => (
                                         <div key={field.id}>
                                                 <input
@@ -95,7 +99,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                                         onChange={handleChange}
                                                         required
                                                         placeholder={field.label}
-                                                        className="ring-1 focus:outline-none  ring-gray-400 rounded px-5 py-2 lg:mb-0 mb-4"
+                                                        className="ring-1 focus:outline-none  ring-gray-400 rounded lg:px-5 md:px-1 py-2 lg:mb-0 mb-4"
                                                 />
                                         </div>
                                 ))}
@@ -112,12 +116,11 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                         name="radioGroup"
                                         className="hidden"
                                         checked={selectedOptions[currentStep] === option}
-                                        onChange={() => handleRadioChange(option)}
+                                        onChange={(e) => handleRadioChange(option, e)}
                                 />
                                 <label
                                         htmlFor={`checkboxOption${index + 1}`}
-                                        className={`ml-2 text-gray-700 text-base checkbox-label ${selectedOptions[currentStep] === option ? 'checked' : ''
-                                                }`}
+                                        className={`ml-2 text-gray-700 text-base  md:text-sm checkbox-label ${selectedOptions[currentStep] === option ? 'checked' : ''}`}
                                 >
                                         {option}
                                 </label>
@@ -132,7 +135,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                         <p className="text-red-500 flex justify-center">{errorMessage}</p>
                                 )}
                                 <fieldset
-                                        className="rounded-xl shadow-xl bg-white mx-5 lg:mx-0 xl:mx-10 lg:w-96 md:w-52 max-w-96 lg:h-[66vh] h-[110vh]"
+                                        className="rounded-xl shadow-xl bg-white mx-5 lg:mx-0 xl:mx-10 lg:w-96 md:max-w-[400px] max-w-96 lg:h-[66vh] md:h-[80vh] h-[100vh]"
                                         style={{
                                                 backgroundImage: `url('${backgroundUrl}')`,
                                                 backgroundSize: 'cover',
@@ -140,12 +143,12 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                                 backgroundRepeat: 'no-repeat',
                                         }}
                                 >
-                                        <div className="bg-[#202020] rounded-t-lg text-white lg:w-[520px] md:w-[208px] w-full mb-3 h-12 lg:h-14 items-center flex justify-center lg:font-medium text-xl lg:text-2xl">
+                                        <div className="bg-[#202020] rounded-t-lg text-white lg:w-[520px] md:w-[445px] w-full mb-3 h-12 lg:h-14 items-center flex justify-center lg:font-medium text-xl lg:text-2xl">
                                                 {heading}
                                         </div>
                                         {currentStep === 1 && (
                                                 <>
-                                                        <div className="lg:grid lg:grid-cols-2 gap-2 px-4 space-y-5">
+                                                        <div className="lg:grid lg:grid-cols-2 gap-2 md:grid md:grid-cols-2 md:space-y-6 px-4 space-y-5">
                                                                 <div className="col-span-2 space-y-2">
                                                                         <h2 className="text-2xl">
                                                                                 Select Your Project Type
@@ -154,7 +157,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                                                 </div>
                                                                 {renderRadioOptions(projectTypes)}
                                                         </div>
-                                                        <div className="flex justify-end px-3 lg:mt-16 mt-[52px]">
+                                                        <div className="flex justify-end px-3 lg:mt-16 mt-[52px] md:mt-[72px]">
                                                                 <button
                                                                         type="button"
                                                                         onClick={() => handleStepChange(2)}
@@ -167,8 +170,8 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                         )}
                                         {currentStep === 2 && (
                                                 <>
-                                                        <div className="lg:grid lg:grid-cols-2 gap-2 px-4 space-y-5">
-                                                                <div className="lg:col-span-2 space-y-2">
+                                                        <div className="lg:grid lg:grid-cols-2 gap-2 md:grid md:grid-cols-2 md:space-y-6 px-4 space-y-5">
+                                                                <div className="col-span-2 space-y-2">
                                                                         <h2 className="text-2xl">
                                                                                 Great, in which niche?
                                                                                 <i className="fa-thin fa-asterisk text-red-500 text-3xl"></i>
@@ -176,7 +179,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                                                 </div>
                                                                 {renderRadioOptions(niches)}
                                                         </div>
-                                                        <div className="flex justify-center px-3 lg:space-x-[400px] space-x-[155px] lg:py-0 py-2 lg:mt-16">
+                                                        <div className="flex justify-center px-3 lg:space-x-[400px] space-x-[155px] md:space-x-[335px] lg:py-0 py-2 md:mt-16 lg:mt-16">
                                                                 <button
                                                                         type="button"
                                                                         onClick={() => handleStepChange(1)}
@@ -186,7 +189,6 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                                                 </button>
                                                                 <button
                                                                         type="submit"
-                                                                        onClick={() => handleStepChange(3)}
                                                                         className="bg-black py-2.5 px-3.5  rounded-full"
                                                                 >
                                                                         <i className="fa-solid fa-arrow-right text-white"></i>
@@ -204,17 +206,19 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                                         <div className="flex justify-center space-x-8 py-4">
                                                                 {renderInputFields()}
                                                         </div>
-                                                        <UploadFile />
-                                                        <div>
+                                                        <div className='md:flex justify-center '>
+                                                                <UploadFile />
+                                                        </div>
+                                                        <div className='md:flex md:justify-center'>
                                                                 <textarea
-                                                                        className="border placeholder:px-3 py-2 mx-2 w-[250px] md:w-48 h-24 lg:w-[502px] focus:outline-none"
+                                                                        className="border placeholder:px-3 py-2 mx-2 w-[250px]  md:w-[410px]  h-24 lg:w-[502px] focus:outline-none"
                                                                         placeholder="Any Message? Write here...."
                                                                         name="message"
                                                                         value={formData.message}
                                                                         onChange={handleChange}
                                                                 ></textarea>
                                                         </div>
-                                                        <div className="flex justify-center  py-2 lg:space-x-80 space-x-28 ">
+                                                        <div className="flex justify-center  py-2 lg:space-x-80 space-x-28 md:space-x-72">
                                                                 <button
                                                                         type="button"
                                                                         onClick={() => handleStepChange(2)}

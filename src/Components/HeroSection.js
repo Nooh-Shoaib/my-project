@@ -42,28 +42,32 @@ const HeroSection = () => {
                                 backgroundSize: 'cover',
                         }}
                 >
-                        <div className="lg:py-48 md:py-40 pt-12 px-8 md:px-8 lg:px-32 ">
-                                <h1 className="text-white text-3xl md:text-3xl font-semibold lg:text-justify md:text-justify text-center lg:text-4xl leading-normal px-6 ">
+                        <div className="lg:py-48 md:py-40 pt-12 px-8 md:px-0 lg:px-32 ">
+                                <h1 className="text-white text-3xl md:text-[2.2rem] font-semibold lg:text-justify md:text-justify text-center lg:text-4xl leading-normal px-6 ">
                                         Let's Make <br />
                                         Your Project My{' '}<br />
                                         <strong className="word-transition">{displayedText}</strong>
                                 </h1>
-                                <div className="flex flex-col md:flex-row md:space-x-6 relative pt-6">
-                                        <button className=" py-2.5 px-3 md:px-4 lg:px-5 rounded-md border-2 mx-3 lg:mx-0 border-white bg-white text-black my-3 lg:text-lg text-base">
-                                                Schedule a meeting Now!
-                                        </button>
-                                        <Link
-                                                to="https://thecustomwebsites.com/wp-content/uploads/2023/05/Presentation-1.pdf"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                        >
-                                                <button className="lg:py-2.5 px-4 md:px-5 lg:px-6 rounded-lg font-semibold border-2 mx-3 lg:mx-0 border-white bg-transparent my-3 text-white lg:text-lg text-base">
-                                                        Get On Demand Developers
+                                <div className="lg:flex relative pt-3 px-4">
+                                        <div>
+                                                <button className=" py-2.5 px-3 md:px-2 lg:px-5 rounded-md border-2 mx-3 md:mx-0 lg:mx-0 border-white bg-white text-black my-3 lg:text-lg text-base">
+                                                        Schedule a meeting Now!
                                                 </button>
-                                        </Link>
+                                        </div>
+                                        <div>
+                                                <Link
+                                                        to="https://thecustomwebsites.com/wp-content/uploads/2023/05/Presentation-1.pdf"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                >
+                                                        <button className="lg:py-2.5 md:py-2.5 px-4 md:px-2 lg:px-6 rounded-lg font-semibold border-2 mx-3 md:mx-0 lg:mx-0 border-white bg-transparent my-3 text-white lg:text-lg text-base">
+                                                                Get On Demand Developers
+                                                        </button>
+                                                </Link>
+                                        </div>
                                 </div>
                         </div>
-                        <div className="lg:absolute md:absolute  md:top-20 lg:top-48  md:right-12 lg:right-24">
+                        <div className="lg:absolute md:absolute  md:top-20 lg:top-48  md:right-0 lg:right-24">
                                 <SubmitForm backgroundUrl={backgroundUrl} heading={heading} />
                         </div>
                 </div>
