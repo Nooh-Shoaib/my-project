@@ -32,7 +32,7 @@ const UploadFile = ({ handleFile }) => {
         return (
                 <div className='flex lg:justify-center'>
                         <button
-                                className="bg-[#202020] border text-white font-semibold md:w-[360px] w-[250px] mx-0.5 py-2 lg:w-full lg:mx-3 rounded-lg my-2 md:mx-2"
+                                className="bg-[#202020] border text-white font-semibold md:w-[360px] w-[250px] mx-0.5 py-2 lg:w-[480px] lg:mx-3 rounded-lg my-2 md:mx-2"
                                 onClick={handleClick}>
 
                                 {Btn}

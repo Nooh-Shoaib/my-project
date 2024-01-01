@@ -43,12 +43,12 @@ const HeroSection = () => {
                         }}
                 >
                         <div className="lg:py-48 md:py-40 pt-12 px-8 md:px-0 lg:px-32 ">
-                                <h1 className="text-white text-3xl md:text-[2.2rem] font-semibold lg:text-justify md:text-justify text-center lg:text-4xl leading-normal px-6 ">
+                                <h1 className="text-white text-3xl md:text-[2.2rem] xl:text-[40px]  lg:text-justify md:text-justify text-center lg:text-4xl leading-normal px-6 ">
                                         Let's Make <br />
-                                        Your Project My{' '}<br />
+                                        Your Project My{' '}<br className='lg:hidden' />
                                         <strong className="word-transition">{displayedText}</strong>
                                 </h1>
-                                <div className="lg:flex relative pt-3 px-4">
+                                <div className="lg:flex relative pt-3 px-4 lg:space-x-2">
                                         <div>
                                                 <button className=" py-2.5 px-3 md:px-2 lg:px-5 rounded-md border-2 mx-3 md:mx-0 lg:mx-0 border-white bg-white text-black my-3 lg:text-lg text-base">
                                                         Schedule a meeting Now!

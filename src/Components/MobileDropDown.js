@@ -34,7 +34,7 @@ const MobileDropDown = () => {
 
 
         return (
-                <div className='bg-white sticky top-0 z-50'>
+                <div className='bg-white sticky top-0 z-50 shadow-xl'>
                         <div className='flex lg:hidden  space-x-36 md:space-x-[570px]   justify-center items-center h-20'>
                                 <img src='https://thecustomwebsites.com/wp-content/uploads/2023/04/logo.png' alt='' className='w-28 md:w-36 h-8 md:h-10 ' />
                                 <i className="fa-solid fa-bars text-2xl" onClick={openNav}></i>

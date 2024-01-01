@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const Accordion = ({ title, contents }) => {
+const contents = [
+        "About Us",
+        "FAQs",
+        "Customer Support",
+        "Blog",
+];
+
+const MobileCompany = () => {
         const [isOpen, setIsOpen] = useState(false);
         const [visible, setVisible] = useState(false);
 
@@ -22,12 +29,12 @@ const Accordion = ({ title, contents }) => {
         }, [isOpen]);
 
         return (
-                <div className="">
+                <div>
                         <button
                                 className="text-left flex transition-all duration-500"
                                 onClick={toggleAccordion}
                         >
-                                {title}
+                                Company
                                 <svg
                                         className={`w-3 h-3 text-black transform ${isOpen ? 'rotate-180' : ''}`}
                                         viewBox="0 0 20 20"
@@ -67,20 +74,4 @@ const Accordion = ({ title, contents }) => {
         );
 }
 
-const CompanyAccordion = () => {
-        return (
-                <div className="bg-white">
-                        <Accordion
-                                title="Company"
-                                contents={[
-                                        "About Us",
-                                        "FAQs",
-                                        "Customer Support",
-                                        "Blog",
-                                ]}
-                        />
-                </div>
-        );
-}
-
-export default CompanyAccordion;
+export default MobileCompany;

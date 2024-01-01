@@ -135,7 +135,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                         <p className="text-red-500 flex justify-center">{errorMessage}</p>
                                 )}
                                 <fieldset
-                                        className="rounded-xl shadow-xl bg-white mx-5 lg:mx-0 xl:mx-10 lg:w-96 md:max-w-[400px] max-w-96 lg:h-[66vh] md:h-[80vh] h-[100vh]"
+                                        className="rounded-xl shadow-xl bg-white mx-5 lg:mx-0 xl:mx-10 lg:w-96 md:max-w-[400px] max-w-96 lg:h-[69vh] md:h-[80vh] h-[100vh]"
                                         style={{
                                                 backgroundImage: `url('${backgroundUrl}')`,
                                                 backgroundSize: 'cover',
@@ -206,7 +206,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                                         <div className="flex justify-center space-x-8 py-4">
                                                                 {renderInputFields()}
                                                         </div>
-                                                        <div className='md:flex justify-center '>
+                                                        <div className='md:flex md:justify-center '>
                                                                 <UploadFile />
                                                         </div>
                                                         <div className='md:flex md:justify-center'>
