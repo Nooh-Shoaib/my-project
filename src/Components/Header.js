@@ -12,19 +12,19 @@ const Header = ({ services, company }) => {
 
         return (
                 <>
-                        <nav className="hidden lg:block  border-b border-gray-400">
+                        <nav className="hidden xl:block lg:block  border-b border-gray-400">
                                 <div className="">
-                                        <div className="flex justify-between items-center mx-36 font-sans">
+                                        <div className="flex justify-between items-center xl:mx-36 lg:mx-12 font-sans">
                                                 <div className='my-3'>
                                                         {contactInfo.map((info, index) => (
                                                                 <Link key={index} to={info.link} target="_blank" className='px-3'>
                                                                         {info.type === 'email' && (
                                                                                 <>
-                                                                                        <i className="fa-solid  fa-envelope fa-lg"></i>
+                                                                                        <i className="fa-solid  fa-envelope fa-"></i>
                                                                                         &nbsp;
                                                                                 </>
                                                                         )}
-                                                                        <i className={`fa-solid fa-${info.type} fa-lg`}></i>&nbsp;
+                                                                        <i className={`fa-solid fa-${info.type} fa-`}></i>&nbsp;
                                                                         <span className="text-xs ">{info.value}</span>
                                                                 </Link>
                                                         ))}
@@ -42,8 +42,8 @@ const Header = ({ services, company }) => {
                         </nav>
 
 
-                        <nav className="hidden lg:block sticky top-0 bg-white z-20 shadow-md">
-                                <div className="flex items-center justify-between px-28 py-4">
+                        <nav className="hidden xl:block lg:block sticky top-0 bg-white z-20 shadow-md">
+                                <div className="flex items-center justify-between xl:px-28 py-4">
                                         <div className="text-black text-[15px] font-semibold flex items-center mx-14">
                                                 <Link to='/'>
                                                         <img src="https://thecustomwebsites.com/wp-content/uploads/2023/04/logo.png" alt="The Custom Websites" className="w-48" />

@@ -39,7 +39,6 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
         const [currentStep, setCurrentStep] = useState(1);
         const { handleSubmit } = useForm('mwkgeggy'); // Destructure only what you need
 
-        const state = {};
         const [selectedOptions, setSelectedOptions] = useState({
                 1: '',
                 2: '',
@@ -85,7 +84,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
 
         const renderInputFields = () => {
                 return (
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="lg:grid lg:grid-cols-2 lg:gap-4 ">
                                 {inputFields.map((field) => (
                                         <div key={field.id}>
                                                 <input
@@ -96,7 +95,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                                         onChange={handleChange}
                                                         required
                                                         placeholder={field.label}
-                                                        className="ring-1 ring-gray-400 rounded px-5 py-2"
+                                                        className="ring-1 focus:outline-none  ring-gray-400 rounded px-5 py-2 lg:mb-0 mb-4"
                                                 />
                                         </div>
                                 ))}
@@ -127,13 +126,13 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
         };
 
         return (
-                <div className="my-20">
+                <div className="lg:my-20 my-12">
                         <form onSubmit={handleSubmit}>
                                 {errorMessage && (
                                         <p className="text-red-500 flex justify-center">{errorMessage}</p>
                                 )}
                                 <fieldset
-                                        className="rounded-xl shadow-xl bg-white mx-5 lg:mx-10  lg:w-96 md:w-52 lg:h-[66vh] h-[110vh]"
+                                        className="rounded-xl shadow-xl bg-white mx-5 lg:mx-0 xl:mx-10 lg:w-96 md:w-52 max-w-96 lg:h-[66vh] h-[110vh]"
                                         style={{
                                                 backgroundImage: `url('${backgroundUrl}')`,
                                                 backgroundSize: 'cover',
@@ -155,7 +154,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                                                 </div>
                                                                 {renderRadioOptions(projectTypes)}
                                                         </div>
-                                                        <div className="flex justify-end px-3 mt-16">
+                                                        <div className="flex justify-end px-3 lg:mt-16 mt-[52px]">
                                                                 <button
                                                                         type="button"
                                                                         onClick={() => handleStepChange(2)}
@@ -177,7 +176,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                                                 </div>
                                                                 {renderRadioOptions(niches)}
                                                         </div>
-                                                        <div className="flex justify-center px-3 space-x-[400px] mt-16">
+                                                        <div className="flex justify-center px-3 lg:space-x-[400px] space-x-[155px] lg:py-0 py-2 lg:mt-16">
                                                                 <button
                                                                         type="button"
                                                                         onClick={() => handleStepChange(1)}
@@ -208,14 +207,14 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                                                         <UploadFile />
                                                         <div>
                                                                 <textarea
-                                                                        className="border placeholder:px-3 py-2 mx-2 w-[270px] md:w-48 h-24 lg:w-[502px]"
+                                                                        className="border placeholder:px-3 py-2 mx-2 w-[250px] md:w-48 h-24 lg:w-[502px] focus:outline-none"
                                                                         placeholder="Any Message? Write here...."
                                                                         name="message"
                                                                         value={formData.message}
                                                                         onChange={handleChange}
                                                                 ></textarea>
                                                         </div>
-                                                        <div className="flex justify-center px-3 py-2 space-x-80 ">
+                                                        <div className="flex justify-center  py-2 lg:space-x-80 space-x-28 ">
                                                                 <button
                                                                         type="button"
                                                                         onClick={() => handleStepChange(2)}

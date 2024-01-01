@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+
 function Accordion({ title, contents, openAccordion, setOpenAccordion }) {
         const isOpen = openAccordion === title;
         const [visible, setVisible] = useState(false);
@@ -43,10 +44,10 @@ function Accordion({ title, contents, openAccordion, setOpenAccordion }) {
                         </button>
 
                         <ul
-                                className="custom-scrollbar overflow-hidden rounded-md shadow-2xl"
+                                className="overflow-hidden rounded-md shadow-2xl"
                                 style={{
-                                        maxHeight: visible ? '1520px' : '0',
-                                        transition: 'max-height 1s ease',
+                                        maxHeight: visible ? '1520px' : '0', // Adjust the height value as needed
+                                        transition: 'max-height 1s ease', // Adjust the duration (2s) and easing function as needed
                                 }}
                         >
                                 {contents.map((v, i) => (
@@ -88,17 +89,16 @@ function Accordion({ title, contents, openAccordion, setOpenAccordion }) {
         );
 }
 
-export function CompanyAccordion() {
+function ServicesAccordion({ services }) {
+        const [openAccordion, setOpenAccordion] = useState(null);
+
         return (
                 <div className="bg-white">
                         <Accordion
-                                title="Company"
-                                contents={[
-                                        "About Us",
-                                        "FAQs",
-                                        "Customer Support",
-                                        "Blog",
-                                ]}
+                                title="Services"
+                                contents={services}
+                                openAccordion={openAccordion}
+                                setOpenAccordion={setOpenAccordion}
                         />
                 </div>
         );
@@ -152,17 +152,6 @@ const services = [
         },
 ];
 
-export function ServicesAccordion() {
-        const [openAccordion, setOpenAccordion] = useState(null);
-
-        return (
-                <div className="bg-white">
-                        <Accordion
-                                title="Services"
-                                contents={services}
-                                openAccordion={openAccordion}
-                                setOpenAccordion={setOpenAccordion}
-                        />
-                </div>
-        );
+export default function App() {
+        return <ServicesAccordion services={services} />;
 }

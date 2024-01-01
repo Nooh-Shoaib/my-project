@@ -34,7 +34,7 @@ const HeroSection = () => {
 
         return (
                 <div
-                        className="lg:h-[595] h-[900px] "
+                        className="lg:h-[595px] h-[900px] "
                         style={{
                                 backgroundImage: 'url("https://thecustomwebsites.com/wp-content/uploads/2023/05/custom-website-bg.jpg")',
                                 backgroundPosition: 'bottom center',
@@ -42,8 +42,8 @@ const HeroSection = () => {
                                 backgroundSize: 'cover',
                         }}
                 >
-                        <div className="lg:py-48 pt-12 px-8 md:px-16 lg:px-32 ">
-                                <h1 className="text-white text-3xl md:text-3xl font-semibold lg:text-justify text-center  lg:text-4xl leading-normal px-6 ">
+                        <div className="lg:py-48 md:py-40 pt-12 px-8 md:px-8 lg:px-32 ">
+                                <h1 className="text-white text-3xl md:text-3xl font-semibold lg:text-justify md:text-justify text-center lg:text-4xl leading-normal px-6 ">
                                         Let's Make <br />
                                         Your Project My{' '}<br />
                                         <strong className="word-transition">{displayedText}</strong>
@@ -63,7 +63,7 @@ const HeroSection = () => {
                                         </Link>
                                 </div>
                         </div>
-                        <div className="lg:absolute  md:top-40 lg:top-48 right-4 md:right-12 lg:right-24">
+                        <div className="lg:absolute md:absolute  md:top-20 lg:top-48  md:right-12 lg:right-24">
                                 <SubmitForm backgroundUrl={backgroundUrl} heading={heading} />
                         </div>
                 </div>

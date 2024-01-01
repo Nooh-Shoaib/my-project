@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import VisibilitySensor from 'react-visibility-sensor';
 
 const AnimatedCounter = () => {
         const [projectFacts, setProjectFacts] = useState([
@@ -17,13 +18,29 @@ const AnimatedCounter = () => {
                 }
         };
 
+        const handleVisibilityChange = (isVisible, index) => {
+                if (isVisible) {
+                        let currentCount = 0;
+                        const interval = setInterval(() => {
+                                currentCount += Math.ceil((projectFacts[index].end - currentCount) * 0.1);
+                                setProjectFacts((prevFacts) => {
+                                        const updatedFacts = [...prevFacts];
+                                        updatedFacts[index].number = currentCount;
+                                        return updatedFacts;
+                                });
+
+                                if (currentCount >= projectFacts[index].end) {
+                                        clearInterval(interval);
+                                }
+                        }, 100);
+                }
+        };
+
         useEffect(() => {
                 if (aboutMeImgRef.current) {
                         aboutMeImgRef.current.addEventListener('mouseenter', handleAuthorHover);
                         aboutMeImgRef.current.addEventListener('mouseleave', handleAuthorHover);
                 }
-
-                handleVisibilityChange();
 
                 return () => {
                         if (aboutMeImgRef.current) {
@@ -32,37 +49,18 @@ const AnimatedCounter = () => {
                         }
                 };
         }, []);
-        const handleVisibilityChange = () => {
-                projectFacts.forEach((fact, index) => {
-                        let currentCount = 0;
-                        const interval = setInterval(() => {
-                                currentCount += Math.ceil((fact.end - currentCount) * 0.1);
-                                setProjectFacts((prevFacts) => {
-                                        const updatedFacts = [...prevFacts];
-                                        updatedFacts[index].number = currentCount;
-                                        return updatedFacts;
-                                });
-
-                                if (currentCount >= fact.end) {
-                                        clearInterval(interval);
-                                }
-                        }, 100);
-                });
-        };
 
         return (
                 <div>
-                        {/* <div className="section-title text-center mb-8">
-                                <h2 className="text-4xl font-bold">Projects Statistics</h2>
-                                <span className="block w-20 h-1 bg-gray-800 mx-auto mt-4"></span>
-                        </div> */}
                         <div className="">
-                                <div className=" my-24">
-                                        <div className="grid grid-cols-2 gap-6">
-                                                {projectFacts.map((fact, index) => (
+                                <div className=" lg:grid lg:grid-cols-2 md:grid md:grid-cols-2 gap-6 container lg:px-0 md:px-0 px-6  lg:space-y-0 md:space-y-0 space-y-7 lg:mx-0">
+                                        {projectFacts.map((fact, index) => (
+                                                <VisibilitySensor
+                                                        key={index}
+                                                        onChange={(isVisible) => handleVisibilityChange(isVisible, index)}
+                                                >
                                                         <div
-                                                                key={index}
-                                                                className="item wow fadeInUpBig animated animated text-center container py-16 rounded-2xl "
+                                                                className="text-center container py-16 rounded-2xl lg:w-[250px] lg:h-[200px]"
                                                                 data-number={fact.end}
                                                                 style={{
                                                                         visibility: 'visible',
@@ -70,16 +68,13 @@ const AnimatedCounter = () => {
                                                                         backgroundPosition: 'bottom center',
                                                                         backgroundRepeat: 'no-repeat',
                                                                         backgroundSize: 'cover',
-                                                                        width: '250px',
-                                                                        height: '200px',
-
                                                                 }}
                                                         >
                                                                 <p className="text-3xl font-bold mb-2 text-white">{fact.number}</p>
-                                                                <p className=" text-white">{fact.label}</p>
+                                                                <p className="text-white px-1">{fact.label}</p>
                                                         </div>
-                                                ))}
-                                        </div>
+                                                </VisibilitySensor>
+                                        ))}
                                 </div>
                         </div>
                 </div>

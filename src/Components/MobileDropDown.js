@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CompanyAccordion, ServicesAccordion } from './DropDownComponents';
+import Service from './DropDownComponents';
+import CompanyAccordion from './MobilebarCompany'
 
 const MobileDropDown = () => {
         const [sidenavWidth, setSidenavWidth] = useState(0);
@@ -48,7 +49,7 @@ const MobileDropDown = () => {
                                         </div>
                                         <div className='mt-10 mx-4 leading-[70px]  '>
                                                 <Link to="/" className='text-base font-semibold'>Get Free Mockup Now!</Link>
-                                                <div className='text-base'><ServicesAccordion /></div>
+                                                <div className='text-base'><Service /></div>
                                                 <Link to="/" className='text-base'>Portfolio</Link>
                                                 <div className='text-base'><CompanyAccordion /></div>
                                         </div>
