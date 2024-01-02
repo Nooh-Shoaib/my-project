@@ -11,7 +11,7 @@ const OurServices = () => {
         const { slug } = useParams();
 
         useEffect(() => {
-                const apiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/OurServices/pagedata/${slug}`;
+                const apiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/OurServices/pagedata?slug=${slug}`;
 
                 fetch(apiUrl)
                         .then(response => {
@@ -105,7 +105,7 @@ const OurServices = () => {
                                         </div>
                                 )}
 
-                                {/* Display Selection Information */}
+                                {/* Display Our Selection  */}
                                 {selection && (
                                         <div>
                                                 <h3>{selection[0].heading}</h3>
@@ -122,6 +122,7 @@ const OurServices = () => {
                                                                 ))}
                                                         </div>
                                                 )}
+
                                         </div>
                                 )}
                         </Layout>
