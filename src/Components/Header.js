@@ -51,7 +51,7 @@ const Header = ({ services, company }) => {
                                         </div>
                                         <div className="ml-2 font-sans">
                                                 <div className='my-3 flex justify-center items-center '>
-                                                        <Link to='/' className='px-5 font-bold text-base'>Get Free Mockup Now!</Link>
+                                                        <Link to='/get-free-mockup' className='px-5 font-bold text-base'>Get Free Mockup Now!</Link>
                                                         <span className='px-5 text-base cursor-pointer'><Services {...services} /></span>
                                                         <Link to='/portfolio' className='px-5 text-base'>Portfolio</Link>
                                                         <span className='px-5 text-base cursor-pointer'><Company {...company} /></span>

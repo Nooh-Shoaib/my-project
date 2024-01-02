@@ -1,46 +1,34 @@
 import React from 'react';
 
-// Optimization component
-const Optimization = () => {
-  return (
-    <>
-      <h1 className='text-center my-14 text-4xl font-semibold'>
-        Website Speed and Optimization
-      </h1>
-      <section>
-        <div className='lg:flex-col-1 md:flex-col-1'>
-          <div className='lg:mx-[320px] '>
-            <ul className='font-bold my-4 mx-6 lg:mx-0 md:mx-8'>
-              <li className='list-disc'>Is your website taking time to load?</li>
-              <li className='list-disc'>Is there any issue in your online visibility?</li>
-              <li className='list-disc'>Is there a high bounce rate as per the website analytics?</li>
-            </ul>
-          </div>
-          <div className='lg:flex lg:justify-center lg:space-x-16 lg:items-start mx-3 lg:mx-0 md:flex md:justify-center md:mx-4'>
-            <p className='lg:max-w-md   '>
-              Are you facing issues like a high bounce rate, lag in website visibility, or slow-loading web pages? If the answer is yes, it's essential to address these issues promptly. The Custom Website can help by creating a 100% responsive website that loads in less than 3 seconds, providing the best user experience. Improve traffic to your website and unlock more potential opportunities with our optimization services.
-            </p>
-            <img
-              src='https://thecustomwebsites.com/wp-content/uploads/2023/05/graph.png'
-              alt='Website Analytics Graph'
-              className='lg:-mt-24 lg:w-[450px] md:w-72'
-            />
-          </div>
-        </div>
-      </section>
-      <section className='bg-black my-16'>
-        <div className='lg:h-24 lg:flex md:flex lg:justify-around lg:items-center lg:space-y-0 space-y-7'>
-          <h2 className='lg:text-2xl text-3xl md:text-2xl font-semibold text-white lg:py-0 lg:px-0 px-4 py-5 md:py-10'>Don’t have a website or app? What are you waiting for?</h2>
-          <div className='lg:space-x-5 lg:space-y-0 space-y-2 pb-2 lg:flex '>
-            <button className="py-3.5 px-7 rounded-md font-semibold border-2 md:mx-0 mx-3 lg:mx-0 border-white bg-transparent text-white">Ask For Demo</button>
-            <button className="py-3.5 px-6 md:px-9 md:py-2 lg:px-5 md:mx-0 mx-3 lg:mx-0 rounded-md font-semibold border-2  border-white bg-white text-black lg:text-lg text-base">
-              Schedule a meeting
-            </button>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+
+const EcommerceSolution = () => {
+  const paragraphs = [
+    "To make your business profitable, the expert team at The Custom Website can provide you with a complete ecommerce solution. Our services include custom ecommerce web development, wordpress ecommerce, wix ecommerce, magento ecommerce, shopify ecommerce, webflow ecommerce, multi-vendor ecommerce website, and saas ecommerce.",
+    "Yes, we can provide you support in all the above-mentioned ecommerce themes and templates that will be 100% SEO-friendly and retina-ready. We do this job to provide you complete satisfaction because we know the worth of your time and money, and that makes us stand higher as the best web design company.",
+    "You can contact us to get Social Media Marketing, Search engine optimization, Internet marketing, Custom Website development service since our team uses the latest technologies. We are well aware of the latest trends, techniques, and technologies. Get control of your e-commerce business and make your business a brand in the industry. Our team will provide your customers with a nice shopping experience to the end-user.",
+  ];
+
+  return (<>
+    <h2 className='text-center lg:text-4xl text-3xl font-semibold'>Introducing Top E-Commerce Platforms For Your Business Success</h2>
+    <div className='lg:flex md:flex md:justify-center justify-center mt-12 mb-5'>
+      <div className="mb-6 ">
+        <img
+          src="https://thecustomwebsites.com/wp-content/uploads/2023/05/ecom-img-min.png"
+          alt="Ecommerce Solution"
+          className="lg:max-w-full max-w-52  h-auto lg:px-0 container lg:mx-0 mx-auto md:pt-24 lg:pt-14"
+        />
+        <button className='border-2 border-black lg:mx-0 mx-5 lg:px-3 px-7 py-2 lg:my-6 my-3 rounded transition-all font-semibold hover:bg-black hover:text-white'>
+          Learn more about ecommerce services
+        </button>
+      </div>
+
+      <div className=" my-10 lg:max-w-3xl md:max-w-lg lg:px-5 px-4">
+        {paragraphs.map((paragraph, index) => (
+          <p key={index} className='py-3'>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+  </>);
 };
 
 // We Are Agile ImageGallery component
@@ -75,4 +63,4 @@ const Agile = () => {
   );
 };
 
-export { Optimization, Agile };
+export { Agile, EcommerceSolution };

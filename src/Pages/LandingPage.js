@@ -5,12 +5,12 @@ import Layout from '../Components/Layout';
 import OurOffers from '../Components/OurOffers';
 import Portfolio from '../Components/Portfolio';
 import OwlCasrousel from '../Components/OwlCarousel';
-import { EcommerceSolution, HowWork, Info, LatestTechnologies } from '../Components/BussinessSection';
-import { Agile, Optimization } from '../Components/AgileAndOptimization';
+import { HowWork, Info, LatestTechnologies, Optimization } from '../Components/BussinessSection';
+import { Agile, EcommerceSolution } from '../Components/AgileAndOptimization';
 import FAQS from '../Components/FAQS';
 import Testimonials from '../Components/Testimonials';
 import Contact from '../Components/Contact';
-import LinearProgress from '../Components/LinearProgressBar';
+import LoadingBar from '../Components/LinearProgressBar';
 
 const Home = () => {
         const [loading, setLoading] = useState(true);
@@ -29,7 +29,7 @@ const Home = () => {
                         <Helmet>
                                 <title>Home - Create Custom Websites</title>
                         </Helmet>
-                        <LinearProgress loading={loading} />
+                        <LoadingBar loading={loading} />
                         {!loading && (
                                 <Layout>
                                         <HeroSection />

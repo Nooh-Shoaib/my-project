@@ -78,7 +78,7 @@ const OurOffers = () => {
 
 
                                                 }}
-                                                className='lg:w-[550px] w-[288px] md:w-[450px] lg:h-[400px]  h-[350px] lg:mx-0  '></div>
+                                                className='lg:w-[550px] w-auto md:w-[450px] lg:h-[400px]  h-[350px] lg:mx-0  '></div>
 
                                         <div
                                                 style={{
