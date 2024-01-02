@@ -13,47 +13,55 @@ const advantages = [
     imageUrl:
       'https://thecustomwebsites.com/wp-content/uploads/2023/05/htpyxaicaqftygqbuwev_robvzn.svg',
     label: 'Custom&nbsp;Web&nbsp;Development',
-    link: '/',
+    link: '/custom-web-development',
   },
   {
     imageUrl:
       'https://thecustomwebsites.com/wp-content/uploads/2023/05/cpdw6fvcrjxq5icdanxy_gxxzyb.svg',
     label: 'UI&nbsp;&amp;&nbsp;UX&nbsp;Design ',
+    link: '/uiux-design',
   },
   {
     imageUrl:
       'https://thecustomwebsites.com/wp-content/uploads/2023/05/pskqvpgwfpvaxirnkflh_iaawf9.svg',
     label: 'SEM',
+    link: '/sem',
   },
   {
     imageUrl:
       'https://thecustomwebsites.com/wp-content/uploads/2023/05/reg4ek2hoyu2p6xijshf_ohzbys.svg',
     label: 'AppDevelopment',
+    link: '/quality-assurance',
   },
   {
     imageUrl:
       'https://thecustomwebsites.com/wp-content/uploads/2023/05/fd9amtrvdglzmm16surr_l3qqfs.svg',
     label: 'Graphics&nbsp;&amp;&nbsp;Branding',
+    link: '/graphics-branding',
   },
   {
     imageUrl:
       'https://thecustomwebsites.com/wp-content/uploads/2023/05/sifwzze7kiehbwslcbrm_waex1r.svg',
     label: 'Quality&nbsp;Assurance',
+    link: '/app-development',
   },
   {
     imageUrl:
       'https://thecustomwebsites.com/wp-content/uploads/2023/05/ufryavrsvi0lysbio9z2_drbs0q.svg',
     label: 'DevOps',
+    link: '/devops',
   },
   {
     imageUrl:
       'https://thecustomwebsites.com/wp-content/uploads/2023/05/fktzbjjevgohlyylbtpf.svg',
     label: 'CMS',
+    link: '/cms',
   },
   {
     imageUrl:
       'https://thecustomwebsites.com/wp-content/uploads/2023/05/untk6q64u64b7iamu1dt.svg',
     label: 'SEO',
+    link: '/seo',
   },
 ];
 
