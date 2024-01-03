@@ -132,7 +132,7 @@ const SubmitForm = ({ backgroundUrl, heading }) => {
                 <div className="lg:my-20 my-12">
                         <form onSubmit={handleSubmit}>
                                 {errorMessage && (
-                                        <p className="text-red-500 flex justify-center">{errorMessage}</p>
+                                        <div className="text-red-500 flex justify-center">{errorMessage}</div>
                                 )}
                                 <fieldset
                                         className="rounded-xl shadow-xl bg-white mx-5 lg:mx-0 xl:mx-10 lg:w-96 md:max-w-[400px] max-w-96 lg:h-[69vh] md:h-[80vh] h-[100vh]"

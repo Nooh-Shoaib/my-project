@@ -31,7 +31,7 @@ const advantages = [
     imageUrl:
       'https://thecustomwebsites.com/wp-content/uploads/2023/05/reg4ek2hoyu2p6xijshf_ohzbys.svg',
     label: 'AppDevelopment',
-    link: '/quality-assurance',
+    link: '/app-development',
   },
   {
     imageUrl:
@@ -43,7 +43,7 @@ const advantages = [
     imageUrl:
       'https://thecustomwebsites.com/wp-content/uploads/2023/05/sifwzze7kiehbwslcbrm_waex1r.svg',
     label: 'Quality&nbsp;Assurance',
-    link: '/app-development',
+    link: '/quality-assurance',
   },
   {
     imageUrl:
