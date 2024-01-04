@@ -1,17 +1,15 @@
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
 import React, { useEffect } from "react";
 import OwlCarousel from "react-owl-carousel";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import BreadcrumbsSection from "../Components/BreadCrumbs";
+import { Link, useParams } from "react-router-dom";
+import BreadcrumbsSection from "../Sections/BreadCrumbs";
 import Contact from "../Components/Contact";
-import DemandDevelopersSection from "../Components/DemandDevelopers";
-import LatestTechnologiesSection from "../Components/LatestTechnologies";
+import DemandDevelopersSection from "../Sections/DemandDevelopers";
+import LatestTechnologiesSection from "../Sections/LatestTechnologies";
 import Layout from "../Components/Layout";
 import ScheduleMeeting from "../Components/ScheduleMeeting";
-import ServiceQuestions from "../Components/ServiceQuestions";
-import SelectionCards from "../Components/WhyChooseUs";
+import ServiceQuestions from "../Sections/ServiceQuestions";
+import SelectionCards from "../Sections/WhyChooseUs";
 import {
         setData,
         setEnterpriseData,
@@ -27,13 +25,11 @@ const OurServices = () => {
         const dispatch = useDispatch();
         const { slug } = useParams();
 
-        const { data, enterpriseData, loading } = useSelector(
-                (state) => ({
-                        data: getData(state),
-                        enterpriseData: getEnterpriseData(state),
-                        loading: getLoading(state),
-                })
-        );
+        const { data, enterpriseData, loading } = useSelector((state) => ({
+                data: getData(state),
+                enterpriseData: getEnterpriseData(state),
+                loading: getLoading(state),
+        }));
 
         useEffect(() => {
                 const fetchData = async () => {
@@ -86,31 +82,21 @@ const OurServices = () => {
                 return text
                         .replace(
                                 /<Link to='(.+?)' className='text-blue-500 hover:text-blue-600'>/g,
-                                (_, p1) =>
-                                        `<a href="${p1}" className="text-blue-500 hover:text-blue-600">`
+                                (_, p1) => `<a href="${p1}"class=" text-blue-500 hover:text-blue-600">`
                         )
                         .replace(/<\/Link>/g, "</a>");
         };
 
 
-
-        const {
-                breadcrumbs,
-                description,
-                tech,
-                demandDevs,
-                selection,
-                enterprise,
-                portfolio,
-        } = mergeAndDestructure(data, enterpriseData);
+        const { breadcrumbs, description, tech, demandDevs, selection, enterprise, portfolio } = mergeAndDestructure(data, enterpriseData);
         const isLoading = loading && (
                 <p className="text-5xl font-semibold flex justify-center items-center py-80">
                         Loading.....
                 </p>
         );
+
         const renderContent = () => (
                 <>
-                        {" "}
                         {loading && (
                                 <p className="text-5xl font-semibold flex justify-center items-center py-80">
                                         Loading.....
@@ -118,56 +104,39 @@ const OurServices = () => {
                         )}
                         {!loading && (
                                 <Layout>
-                                        {/* Display Breadcrumbs */}
                                         {breadcrumbs && <BreadcrumbsSection breadcrumbs={breadcrumbs} />}
 
-
-                                        {/* Display Main Information */}
                                         {description && (
                                                 <div className="my-10">
-                                                        <h3 className="text-4xl font-semibold text-center">
-                                                                {description[0].heading}
-                                                        </h3>
+                                                        <h3 className="text-4xl font-semibold text-center">{description[0].heading}</h3>
                                                         <p
                                                                 className="text-justify mx-36 leading-7 text-[1.1rem] my-5"
-                                                                dangerouslySetInnerHTML={{
-                                                                        __html: replaceLinks(description[0].text),
-                                                                }}
+                                                                dangerouslySetInnerHTML={{ __html: replaceLinks(description[0].text) }}
                                                         />
                                                 </div>
                                         )}
                                         <ScheduleMeeting />
 
-                                        {/* Display Latest Technologies */}
                                         {tech.length > 0 && <LatestTechnologiesSection tech={tech} />}
 
-                                        {/* Display Service Button */}
                                         <div className="flex justify-center">
                                                 <button className="py-3 px-6 bg-black text-white hover:text-black border-black border-2 my-12 hover:bg-transparent duration-300 font-semibold rounded">
                                                         Avail Service
                                                 </button>
                                         </div>
 
-                                        {/* Display Demand Developers? */}
                                         {demandDevs && <DemandDevelopersSection demandDevs={demandDevs} />}
 
-                                        {/* Display Why Choose 'The Custom Websites'*/}
                                         {selection && (
                                                 <div className="py-24">
-                                                        <h3 className="text-[2.20rem] font-semibold text-center pb-12 ">
-                                                                {selection[0].heading}
-                                                        </h3>
-
-                                                        {/* Use the SelectionCards component here */}
-                                                        <SelectionCards cards={selection[0].cards} replaceLinks={replaceLinks} />
+                                                        <h3 className="text-[2.20rem] font-semibold text-center pb-12 ">{selection[0].heading}</h3>
+                                                        {selection[0].cards && <SelectionCards cards={selection[0].cards} replaceLinks={replaceLinks} />}
                                                 </div>
                                         )}
-                                        {/* Display Small Business/Enterprise */}
+
                                         {enterprise && (
-                                                <div className="py-12">
-                                                        <h3 className="text-3xl font-semibold text-center">
-                                                                {enterprise.heading}
-                                                        </h3>
+                                                <div className="">
+                                                        <h3 className="text-3xl font-semibold text-center">{enterprise.heading}</h3>
                                                         {enterprise.texts.map((text, index) => (
                                                                 <p
                                                                         key={index}
@@ -177,17 +146,19 @@ const OurServices = () => {
                                                         ))}
                                                 </div>
                                         )}
-                                        {/* Display Frequently Asked Questions */}
+                                        <div className="flex justify-center">
+                                                <button className="py-3 px-6 bg-black text-white hover:text-black border-black border-2 my-12 hover:bg-transparent duration-300 font-semibold rounded">
+                                                        Lets's Discuss Your Project
+                                                </button>
+                                        </div>
+
                                         <div>
                                                 <ServiceQuestions />
                                         </div>
 
-                                        {/* Display Portfolio */}
                                         {portfolio && (
                                                 <div>
-                                                        <h3 className="text-4xl font-semibold py-9 text-center">
-                                                                Our Portfolio
-                                                        </h3>
+                                                        <h3 className="text-4xl font-semibold py-9 text-center">Our Portfolio</h3>
                                                         <OwlCarousel
                                                                 className="owl-theme mx-auto"
                                                                 loop
@@ -208,15 +179,28 @@ const OurServices = () => {
                                                                         </div>
                                                                 ))}
                                                         </OwlCarousel>
-
                                                 </div>
                                         )}
 
                                         <Contact />
+                                        <section className='bg-black '>
+                                                <div className='h-24 flex justify-around  items-center  '>
+                                                        <h2 className='text-2xl font-semibold text-white '>Don’t have a website or app? What are you waiting for?</h2>
+                                                        <div className='space-x-5'>
+                                                                <button className=" py-4 px-7 rounded-md font-semibold border-2 mx-3 lg:mx-0 border-white bg-transparent  my-3 text-white">Get A Free Proposal</button>
+                                                                <Link to='/schedule-a-meeting'>
+                                                                        <button className=" py-3.5 px-1.5 md:px-4 lg:px-5 rounded-md font-semibold border-2  lg:mx-0 border-white bg-white text-black my-3 lg:text-lg text-base">
+                                                                                Schedule a Meeting
+
+                                                                        </button></Link>
+                                                        </div>
+                                                </div>
+                                        </section>
                                 </Layout>
                         )}
                 </>
         );
+
         return <>{loading ? isLoading : renderContent()}</>;
 };
 
