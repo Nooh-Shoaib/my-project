@@ -11,6 +11,7 @@ import FAQS from '../Components/FAQS';
 import Testimonials from '../Components/Testimonials';
 import Contact from '../Components/Contact';
 import LoadingBar from '../Components/LinearProgressBar';
+import AdvancedErrorBoundary from '../Components/ErrorBoundry';
 
 const Home = () => {
         const [loading, setLoading] = useState(true);
@@ -24,7 +25,7 @@ const Home = () => {
                 return () => clearTimeout(timeoutId);
         }, []);
 
-        return (
+        return (<AdvancedErrorBoundary>
                 <div>
                         <Helmet>
                                 <title>Home - Create Custom Websites</title>
@@ -48,6 +49,7 @@ const Home = () => {
                                 </Layout>
                         )}
                 </div>
+        </AdvancedErrorBoundary>
         );
 };
 

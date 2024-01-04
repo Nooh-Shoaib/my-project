@@ -57,7 +57,7 @@ const Contact = () => {
         return (
                 <div className="my-9">
                         <h1 className="text-center font-semibold lg:text-[2.25rem] md:text-[2.25rem] text-3xl my-4 lg:mx-0 md:mx-0 mx-5">Contact Us For Expert Advice</h1>
-                        <p className="text-center text-base py-1">
+                        <div className="text-center text-base py-1">
                                 Call us at{' '}
                                 <Link to="+1-213-416-7355" className="text-blue-600 hover:text-blue-700">
                                         +1-213-416-7355
@@ -82,7 +82,7 @@ const Contact = () => {
                                                 </button>
                                         </div>
                                 </form>
-                        </p>
+                        </div>
                 </div>
         );
 };

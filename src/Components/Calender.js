@@ -40,7 +40,7 @@ const CalendlyInlineWidget = () => {
                                                         <Link to='/' className='text-white text-base font-semibold'>
                                                                 Home &nbsp;
                                                         </Link>
-                                                        <span className='text-white'><i class="fa-solid fa-arrow-right"></i></span>
+                                                        <span className='text-white'><i className="fa-solid fa-arrow-right"></i></span>
                                                         &nbsp;
                                                         <span className='text-white text-base font-semibold'>
                                                                 Schedule a Meeting
