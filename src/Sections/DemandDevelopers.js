@@ -34,16 +34,8 @@ const DemandDevelopersSection = ({ demandDevs }) => {
                                                 </Link>
                                         </div>
                                 </div>
-                                <div
-                                        style={{
-                                                position: 'relative',
-                                                backgroundImage: `url(${demandDevs.image})`,
-                                                backgroundRepeat: 'no-repeat',
 
-                                        }}
-                                >
-                                        {demandDevs.image && <img src={demandDevs.maskimage} alt="work" className="w-[500px]" />}
-                                </div>
+                                {demandDevs.image && <img src={demandDevs.image} alt="work" className="w-[500px] " />}
                         </div>
                 </div >
         );

@@ -59,7 +59,7 @@ const OurServices = () => {
         useEffect(() => {
                 const mainApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/OurServices/pagedata/${slug}`;
                 const enterpriseApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/AdditionalData/data/${slug}`;
-                const restofApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/RestOfData/app/${slug}`; // Add your third API URL here
+                const restofApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/RestOfData/app/${slug}`;
                 const remainingApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/RemainingApiData/graphic/${slug}`;
                 const nextApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/CategoriesApi/category/${slug}`;
 
@@ -77,17 +77,26 @@ const OurServices = () => {
                 return objects.reduce((merged, obj) => ({ ...merged, ...obj }), {});
         };
         const replaceLinks = (text) => {
-                if (typeof text !== 'string') {
-                        console.error('Invalid text format');
+                try {
+                        if (Array.isArray(text)) {
+                                // If it's an array, join its elements into a string
+                                text = text.join(' ');
+                        }
+
+                        if (typeof text !== 'string') {
+                                return text;
+                        }
+
+                        return text
+                                .replace(
+                                        /<Link to='(.+?)' className='text-blue-500 hover:text-blue-600'>/g,
+                                        (_, p1) => `<a href="${p1}" class="text-blue-500 hover:text-blue-600">`
+                                )
+                                .replace(/<\/Link>/g, "</a>");
+                } catch (error) {
+                        console.error('Error in replaceLinks:', error.message);
                         return text;
                 }
-
-                return text
-                        .replace(
-                                /<Link to='(.+?)' className='text-blue-500 hover:text-blue-600'>/g,
-                                (_, p1) => `<a href="${p1}" class="text-blue-500 hover:text-blue-600">`
-                        )
-                        .replace(/<\/Link>/g, "</a>");
         };
 
         const { breadcrumbs, description, tech, demandDevs, selection, enterprise, portfolio } = mergeAndDestructure(data, enterpriseData);
@@ -113,7 +122,7 @@ const OurServices = () => {
                                                 {description && (<>
                                                         <h3 className="text-4xl font-semibold text-center">{description[0].heading}</h3>
                                                         <h3
-                                                                className="text-2xl text-center"
+                                                                className="text-2xl font-semibold my-5 text-center"
                                                                 dangerouslySetInnerHTML={{ __html: replaceLinks(description[0].subheading) }}
                                                         ></h3><p
                                                                 className="text-center mx-36 leading-7 text-[1.1rem] my-5"
@@ -138,12 +147,6 @@ const OurServices = () => {
                                                 </>
                                         )}
 
-
-                                        {/* <div className="flex justify-center">
-                                                <button className="py-3 px-6 bg-black text-white hover:text-black border-black border-2 my-12 hover:bg-transparent duration-300 font-semibold rounded">
-                                                        Avail Service
-                                                </button>
-                                        </div> */}
 
                                         {demandDevs && Object.keys(demandDevs).length > 0 && <DemandDevelopersSection demandDevs={demandDevs} />}
 
