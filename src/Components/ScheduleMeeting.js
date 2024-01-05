@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const ScheduleMeeting = () => {
         return (
-                <section className='bg-black my-16'>
+                <section className='bg-black '>
                         <div className='h-24 flex justify-around  items-center  '>
                                 <h2 className='text-2xl font-semibold text-white '>Don’t have a website or app? What are you waiting for?</h2>
                                 <div className='space-x-5'>

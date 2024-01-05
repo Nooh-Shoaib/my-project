@@ -5,16 +5,21 @@ const DemandDevelopersSection = ({ demandDevs }) => {
         return (
                 <div
                         style={{
+                                position: 'relative',
                                 backgroundImage: `url(${demandDevs.backgroundimage})`,
                                 padding: '20px',
                                 textAlign: 'center',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundSize: 'cover',
                                 height: '460px',
+                                width: '100%',
                         }}
                 >
-                        <div className="flex justify-between px-28 py-32">
-                                <div className=" ">
+
+                        <div className="flex justify-between px-28 py-">
+                                <div className="mt-12 ">
                                         <h2
-                                                className="text-white text-[44px] text-justify"
+                                                className="text-white text-[44px] text-start"
                                                 dangerouslySetInnerHTML={{ __html: demandDevs.heading }}
                                         ></h2>
                                         <div className="space-x-5 flex justify-start">
@@ -29,10 +34,18 @@ const DemandDevelopersSection = ({ demandDevs }) => {
                                                 </Link>
                                         </div>
                                 </div>
+                                <div
+                                        style={{
+                                                position: 'relative',
+                                                backgroundImage: `url(${demandDevs.image})`,
+                                                backgroundRepeat: 'no-repeat',
 
-                                {demandDevs.image && <img src={demandDevs.image} alt="work" className="w-[500px]" />}
+                                        }}
+                                >
+                                        {demandDevs.image && <img src={demandDevs.maskimage} alt="work" className="w-[500px]" />}
+                                </div>
                         </div>
-                </div>
+                </div >
         );
 };
 

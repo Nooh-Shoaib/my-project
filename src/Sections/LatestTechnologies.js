@@ -2,7 +2,7 @@ import React from 'react';
 
 const LatestTechnologiesSection = ({ tech }) => {
         return (
-                <div>
+                <div className='my-16'>
                         <h3 className="text-4xl font-semibold text-center py-3">{tech[0].techHeading}</h3>
                         <p className="text-center mx-36 leading-7 text-[1.1rem] my-5">{tech[0].techText}</p>
 

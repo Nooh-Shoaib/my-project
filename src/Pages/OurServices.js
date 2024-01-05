@@ -1,94 +1,97 @@
+// src/Pages/OurServices.js
 import React, { useEffect } from "react";
 import OwlCarousel from "react-owl-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import BreadcrumbsSection from "../Sections/BreadCrumbs";
 import Contact from "../Components/Contact";
-import DemandDevelopersSection from "../Sections/DemandDevelopers";
-import LatestTechnologiesSection from "../Sections/LatestTechnologies";
 import Layout from "../Components/Layout";
 import ScheduleMeeting from "../Components/ScheduleMeeting";
+import { setData, setLoading } from "../ReduxToolKit/action";
+import BreadcrumbsSection from "../Sections/BreadCrumbs";
+import DemandDevelopersSection from "../Sections/DemandDevelopers";
+import LatestTechnologiesSection from "../Sections/LatestTechnologies";
 import ServiceQuestions from "../Sections/ServiceQuestions";
 import SelectionCards from "../Sections/WhyChooseUs";
-import {
-        setData,
-        setEnterpriseData,
-        setLoading,
-} from "../ReduxToolKit/action";
-import {
-        getData,
-        getEnterpriseData,
-        getLoading,
-} from "../ReduxToolKit/selectors";
 
 const OurServices = () => {
         const dispatch = useDispatch();
         const { slug } = useParams();
 
-        const { data, enterpriseData, loading } = useSelector((state) => ({
-                data: getData(state),
-                enterpriseData: getEnterpriseData(state),
-                loading: getLoading(state),
-        }));
+        const { data, enterpriseData, loading } = useSelector((state) => state);
+
+        const fetchData = async (apiUrls, setDataCallback) => {
+                try {
+                        dispatch(setLoading(true));
+
+                        let mergedData = {};
+
+                        for (const apiUrl of apiUrls) {
+                                const response = await fetch(apiUrl);
+
+                                if (response.ok) {
+                                        const jsonData = await response.json();
+
+                                        console.log(`API Response for ${apiUrl}:`, jsonData);
+
+                                        if (typeof jsonData === "object" && jsonData !== null) {
+                                                // Merge the data
+                                                mergedData = { ...mergedData, ...jsonData };
+                                        } else {
+                                                console.error("Invalid data format");
+                                        }
+                                } else {
+                                        console.error(`HTTP error! Status: ${response.status}`);
+                                }
+                        }
+
+                        // Set the merged data
+                        setDataCallback(mergedData);
+
+                        dispatch(setLoading(false));
+                } catch (error) {
+                        console.error("Error fetching data:", error);
+                        dispatch(setLoading(false));
+                }
+        };
+
+
 
         useEffect(() => {
-                const fetchData = async () => {
-                        try {
-                                dispatch(setLoading(true));
+                const mainApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/OurServices/pagedata/${slug}`;
+                const enterpriseApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/AdditionalData/data/${slug}`;
+                const restofApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/RestOfData/app/${slug}`; // Add your third API URL here
+                const remainingApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/RemainingApiData/graphic/${slug}`;
+                const nextApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/CategoriesApi/category/${slug}`;
 
-                                const mainApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/OurServices/pagedata/${slug}`;
-                                const enterpriseApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/AdditionalData/pagedata/${slug}`;
+                const apiUrls = [mainApiUrl, enterpriseApiUrl, restofApiUrl, remainingApiUrl, nextApiUrl];
 
-                                const [mainResponse, enterpriseResponse] = await Promise.all([
-                                        fetch(mainApiUrl),
-                                        fetch(enterpriseApiUrl),
-                                ]);
-
-                                if (!mainResponse.ok || !enterpriseResponse.ok) {
-                                        throw new Error(
-                                                `HTTP error! Status: ${mainResponse.status} or ${enterpriseResponse.status}`
-                                        );
-                                }
-
-                                const [mainData, enterpriseData] = await Promise.all([
-                                        mainResponse.json(),
-                                        enterpriseResponse.json(),
-                                ]);
-
-                                console.log("Main Data:", mainData);
-                                console.log("Enterprise Data:", enterpriseData);
-
-                                if (typeof mainData === "object" && mainData !== null) {
-                                        dispatch(setData(mainData));
-                                        dispatch(setEnterpriseData(enterpriseData));
-                                        dispatch(setLoading(false));
-                                } else {
-                                        console.error("Invalid main data format");
-                                        dispatch(setLoading(false));
-                                }
-                        } catch (error) {
-                                console.error("Error fetching data:", error);
-                                dispatch(setLoading(false));
-                        }
-                };
-
-                fetchData();
+                fetchData(apiUrls, (mainData) => dispatch(setData(mainData)));
         }, [dispatch, slug]);
+
+
+
+
+
 
         const mergeAndDestructure = (...objects) => {
                 return objects.reduce((merged, obj) => ({ ...merged, ...obj }), {});
         };
         const replaceLinks = (text) => {
+                if (typeof text !== 'string') {
+                        console.error('Invalid text format');
+                        return text;
+                }
+
                 return text
                         .replace(
                                 /<Link to='(.+?)' className='text-blue-500 hover:text-blue-600'>/g,
-                                (_, p1) => `<a href="${p1}"class=" text-blue-500 hover:text-blue-600">`
+                                (_, p1) => `<a href="${p1}" class="text-blue-500 hover:text-blue-600">`
                         )
                         .replace(/<\/Link>/g, "</a>");
         };
 
-
         const { breadcrumbs, description, tech, demandDevs, selection, enterprise, portfolio } = mergeAndDestructure(data, enterpriseData);
+
         const isLoading = loading && (
                 <p className="text-5xl font-semibold flex justify-center items-center py-80">
                         Loading.....
@@ -106,26 +109,43 @@ const OurServices = () => {
                                 <Layout>
                                         {breadcrumbs && <BreadcrumbsSection breadcrumbs={breadcrumbs} />}
 
-                                        {description && (
-                                                <div className="my-10">
+                                        <div className="my-10">
+                                                {description && (<>
                                                         <h3 className="text-4xl font-semibold text-center">{description[0].heading}</h3>
-                                                        <p
-                                                                className="text-justify mx-36 leading-7 text-[1.1rem] my-5"
+                                                        <h3
+                                                                className="text-2xl text-center"
+                                                                dangerouslySetInnerHTML={{ __html: replaceLinks(description[0].subheading) }}
+                                                        ></h3><p
+                                                                className="text-center mx-36 leading-7 text-[1.1rem] my-5"
                                                                 dangerouslySetInnerHTML={{ __html: replaceLinks(description[0].text) }}
                                                         />
-                                                </div>
-                                        )}
+
+                                                </>)} {description && (<p
+                                                        className="text-center mx-36 leading-7 text-[1.1rem] my-5"
+                                                        dangerouslySetInnerHTML={{ __html: replaceLinks(description[0].cmstext) }}
+                                                />)}
+                                        </div>
                                         <ScheduleMeeting />
 
-                                        {tech.length > 0 && <LatestTechnologiesSection tech={tech} />}
+                                        {tech && tech.length > 0 && (
+                                                <>
+                                                        <LatestTechnologiesSection tech={tech} />
+                                                        <div className="flex justify-center">
+                                                                <button className="py-3 px-6 bg-black text-white hover:text-black border-black border-2 my-12 hover:bg-transparent duration-300 font-semibold rounded">
+                                                                        Avail Service
+                                                                </button>
+                                                        </div>
+                                                </>
+                                        )}
 
-                                        <div className="flex justify-center">
+
+                                        {/* <div className="flex justify-center">
                                                 <button className="py-3 px-6 bg-black text-white hover:text-black border-black border-2 my-12 hover:bg-transparent duration-300 font-semibold rounded">
                                                         Avail Service
                                                 </button>
-                                        </div>
+                                        </div> */}
 
-                                        {demandDevs && <DemandDevelopersSection demandDevs={demandDevs} />}
+                                        {demandDevs && Object.keys(demandDevs).length > 0 && <DemandDevelopersSection demandDevs={demandDevs} />}
 
                                         {selection && (
                                                 <div className="py-24">
@@ -134,7 +154,7 @@ const OurServices = () => {
                                                 </div>
                                         )}
 
-                                        {enterprise && (
+                                        {enterprise && (<>
                                                 <div className="">
                                                         <h3 className="text-3xl font-semibold text-center">{enterprise.heading}</h3>
                                                         {enterprise.texts.map((text, index) => (
@@ -145,16 +165,19 @@ const OurServices = () => {
                                                                 />
                                                         ))}
                                                 </div>
+                                                <div className="flex justify-center">
+                                                        <button className="py-3 px-6 bg-black text-white hover:text-black border-black border-2 my-12 hover:bg-transparent duration-300 font-semibold rounded">
+                                                                Lets's Discuss Your Project
+                                                        </button>
+                                                </div>   </>
                                         )}
-                                        <div className="flex justify-center">
-                                                <button className="py-3 px-6 bg-black text-white hover:text-black border-black border-2 my-12 hover:bg-transparent duration-300 font-semibold rounded">
-                                                        Lets's Discuss Your Project
-                                                </button>
-                                        </div>
 
-                                        <div>
-                                                <ServiceQuestions />
-                                        </div>
+
+                                        {slug === 'custom-web-development' && (
+                                                <div>
+                                                        <ServiceQuestions />
+                                                </div>
+                                        )}
 
                                         {portfolio && (
                                                 <div>

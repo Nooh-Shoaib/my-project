@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux'; // Import Provider from react-redux
-import store from './ReduxToolKit/store'; // Import your Redux store
+import { Provider } from 'react-redux';
+import store from './ReduxToolKit/store';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -13,4 +13,4 @@ root.render(
   </Provider>
 );
 
-reportWebVitals(console.log);
+reportWebVitals();
