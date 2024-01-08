@@ -1,20 +1,8 @@
 import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import OwlCarousel from "react-owl-carousel";
 
 const Carousel = () => {
-        const settings = {
-                dots: false,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 6,
-                slidesToScroll: 2,
-                autoplay: true,
-                innerWidth: 10,
-                autoplaySpeed: 2000,
 
-        };
 
         const images = [
                 {
@@ -233,16 +221,23 @@ const Carousel = () => {
         ];
 
         return (
-                <section className='overflow-hidden flex justify-center'>
-                        <div className="container  ml-36 w-[1200px] ">
-                                <Slider {...settings}>
-                                        {images.map((image, index) => (
-                                                <div key={index} className='cursor-grab '>
-                                                        <img src={image.url} alt={image.alt} className='w-12 ' />
-                                                        <p>{image.text}</p>
+                <section className='overflow-hidden flex justify-center ml-32'>
+                        <div className='w-[1200px] overflow-hidden'>
+                                <OwlCarousel
+                                        className="owl-theme"
+                                        loop={true}
+                                        autoplay={true}
+                                        autoplayTimeout={3000}
+                                        items={8}
+
+                                >
+                                        {images.map((images, index) => (
+                                                <div key={index} className="  shadow-2xl lg:shadow-none ">
+                                                        <img src={images.url} alt={`portfolio-${index}`} className="max-w-12" />
+                                                        <p>{images.text}</p>
                                                 </div>
                                         ))}
-                                </Slider>
+                                </OwlCarousel>
                         </div>
                 </section>
         );

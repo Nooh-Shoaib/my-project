@@ -50,9 +50,11 @@ const HeroSection = () => {
                                 </h1>
                                 <div className="lg:flex relative pt-3 px-4 lg:space-x-2">
                                         <div>
-                                                <button className=" py-2.5 px-3 md:px-2 lg:px-5 rounded-md border-2 mx-3 md:mx-0 lg:mx-0 border-white bg-white text-black my-3 lg:text-lg text-base">
-                                                        Schedule a meeting Now!
-                                                </button>
+                                                <Link to='/schedule-a-meeting'>
+                                                        <button className=" py-2.5 px-3 md:px-2 lg:px-5 rounded-md border-2 mx-3 md:mx-0 lg:mx-0 border-white bg-white text-black my-3 lg:text-lg text-base">
+                                                                Schedule a meeting Now!
+                                                        </button>
+                                                </Link>
                                         </div>
                                         <div>
                                                 <Link

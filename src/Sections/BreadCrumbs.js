@@ -6,11 +6,11 @@ const BreadcrumbsSection = ({ breadcrumbs }) => {
                 <div
                         style={{
                                 backgroundImage: `url(${breadcrumbs?.backgroundimage})`,
-                                padding: "20px",
-                                textAlign: "center",
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: "cover", // Use object-fit equivalent for background images
                                 height: "250px",
-                                backgroundPosition: "bottom",
                         }}
+
                 >
                         <div className="py-16">
                                 <div className="flex justify-center">
@@ -27,7 +27,7 @@ const BreadcrumbsSection = ({ breadcrumbs }) => {
                                         <span className="text-white text-base font-semibold">{breadcrumbs?.category}</span>
                                 </div>
                         </div>
-                </div>
+                </div >
         );
 };
 

@@ -28,7 +28,7 @@ const CalendlyInlineWidget = () => {
         return (
                 <>
                         <Helmet>
-                                <title>Get Free Mockup - The Custom Websites</title>
+                                <title>Schedule a Meeting - The Custom Websites</title>
                         </Helmet>
                         <Layout>
                                 <div style={backgroundImageStyle} className='w-full h-72'>

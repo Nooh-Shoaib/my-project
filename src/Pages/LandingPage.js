@@ -12,6 +12,7 @@ import Testimonials from '../Components/Testimonials';
 import Contact from '../Components/Contact';
 import LoadingBar from '../Components/LinearProgressBar';
 import AdvancedErrorBoundary from '../Components/ErrorBoundry';
+import Loadingspinner from '../Components/Loadingspinner';
 
 const Home = () => {
         const [loading, setLoading] = useState(true);
@@ -30,7 +31,7 @@ const Home = () => {
                         <Helmet>
                                 <title>Home - Create Custom Websites</title>
                         </Helmet>
-                        <LoadingBar loading={loading} />
+                        <Loadingspinner loading={loading} />
                         {!loading && (
                                 <Layout>
                                         <HeroSection />

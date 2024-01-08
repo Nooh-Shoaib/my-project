@@ -12,6 +12,10 @@ import DemandDevelopersSection from "../Sections/DemandDevelopers";
 import LatestTechnologiesSection from "../Sections/LatestTechnologies";
 import ServiceQuestions from "../Sections/ServiceQuestions";
 import SelectionCards from "../Sections/WhyChooseUs";
+import AdvancedErrorBoundary from '../Components/ErrorBoundry';
+import Loadingspinner from "../Components/Loadingspinner";
+import ServicesList from "../Sections/description";
+import { Helmet } from "react-helmet";
 
 const OurServices = () => {
         const dispatch = useDispatch();
@@ -62,8 +66,10 @@ const OurServices = () => {
                 const restofApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/RestOfData/app/${slug}`;
                 const remainingApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/RemainingApiData/graphic/${slug}`;
                 const nextApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/CategoriesApi/category/${slug}`;
+                const componentsApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/components/sem/${slug}`;
+                const serviceApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/restfulservices/data/${slug}`;
 
-                const apiUrls = [mainApiUrl, enterpriseApiUrl, restofApiUrl, remainingApiUrl, nextApiUrl];
+                const apiUrls = [mainApiUrl, enterpriseApiUrl, restofApiUrl, remainingApiUrl, nextApiUrl, componentsApiUrl, serviceApiUrl];
 
                 fetchData(apiUrls, (mainData) => dispatch(setData(mainData)));
         }, [dispatch, slug]);
@@ -87,60 +93,60 @@ const OurServices = () => {
                                 return text;
                         }
 
-                        return text
-                                .replace(
-                                        /<Link to='(.+?)' className='text-blue-500 hover:text-blue-600'>/g,
-                                        (_, p1) => `<a href="${p1}" class="text-blue-500 hover:text-blue-600">`
-                                )
-                                .replace(/<\/Link>/g, "</a>");
+                        // Replace all anchor tags with the specified classes
+                        text = text.replace(/<a/g, '<a class="text-blue-500 hover:text-blue-600"');
+
+                        return text;
                 } catch (error) {
                         console.error('Error in replaceLinks:', error.message);
                         return text;
                 }
         };
 
-        const { breadcrumbs, description, tech, demandDevs, selection, enterprise, portfolio } = mergeAndDestructure(data, enterpriseData);
+        const { breadcrumbs, description, tech, demandDevs, selection, enterprise, portfolio, info } = mergeAndDestructure(data, enterpriseData);
 
         const isLoading = loading && (
-                <p className="text-5xl font-semibold flex justify-center items-center py-80">
-                        Loading.....
-                </p>
+                <Loadingspinner loading={loading} />
         );
 
+
         const renderContent = () => (
+
                 <>
+                        <Helmet>
+                                <title>{`${breadcrumbs?.category ?? 'No Page'} - The Custom Website`}</title>
+                        </Helmet>
                         {loading && (
-                                <p className="text-5xl font-semibold flex justify-center items-center py-80">
-                                        Loading.....
-                                </p>
+
+                                <Loadingspinner loading={loading} />
+
                         )}
                         {!loading && (
                                 <Layout>
                                         {breadcrumbs && <BreadcrumbsSection breadcrumbs={breadcrumbs} />}
-
                                         <div className="my-10">
-                                                {description && (<>
-                                                        <h3 className="text-4xl font-semibold text-center">{description[0].heading}</h3>
-                                                        <h3
-                                                                className="text-2xl font-semibold my-5 text-center"
-                                                                dangerouslySetInnerHTML={{ __html: replaceLinks(description[0].subheading) }}
-                                                        ></h3><p
-                                                                className="text-center mx-36 leading-7 text-[1.1rem] my-5"
-                                                                dangerouslySetInnerHTML={{ __html: replaceLinks(description[0].text) }}
-                                                        />
-
-                                                </>)} {description && (<p
-                                                        className="text-center mx-36 leading-7 text-[1.1rem] my-5"
-                                                        dangerouslySetInnerHTML={{ __html: replaceLinks(description[0].cmstext) }}
-                                                />)}
+                                                {description && <ServicesList {...description[0]} replaceLinks={replaceLinks} />}
                                         </div>
+                                        <div className="my-10 grid grid-cols-3 gap-x-11 mx-24">
+                                                {info && Array.isArray(info) && info.length > 0 && info.map((section, index) => (
+                                                        <div key={index} className={`shadow-xl shadow-gray-400 mt-5 p-5 rounded-md ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
+                                                                <h3 className="text-4xl font-semibold text-center">{section.heading}</h3>
+                                                                <div className="text-center leading-7 text-base my-5">
+                                                                        <p dangerouslySetInnerHTML={{ __html: replaceLinks(section.about) }} className="mb-5" />
+                                                                        <p dangerouslySetInnerHTML={{ __html: replaceLinks(section.specifications) }} />
+                                                                </div>
+                                                        </div>
+                                                ))}
+                                        </div>
+
+
                                         <ScheduleMeeting />
 
                                         {tech && tech.length > 0 && (
                                                 <>
                                                         <LatestTechnologiesSection tech={tech} />
                                                         <div className="flex justify-center">
-                                                                <button className="py-3 px-6 bg-black text-white hover:text-black border-black border-2 my-12 hover:bg-transparent duration-300 font-semibold rounded">
+                                                                <button className="py-3 px-6 bg-black text-white hover:text-black border-black border-2 mb-12 hover:bg-transparent duration-300 font-semibold rounded">
                                                                         Avail Service
                                                                 </button>
                                                         </div>
@@ -150,29 +156,44 @@ const OurServices = () => {
 
                                         {demandDevs && Object.keys(demandDevs).length > 0 && <DemandDevelopersSection demandDevs={demandDevs} />}
 
-                                        {selection && (
+                                        {selection && selection.length > 0 && (
                                                 <div className="py-24">
                                                         <h3 className="text-[2.20rem] font-semibold text-center pb-12 ">{selection[0].heading}</h3>
                                                         {selection[0].cards && <SelectionCards cards={selection[0].cards} replaceLinks={replaceLinks} />}
                                                 </div>
                                         )}
+                                        {enterprise && enterprise.texts && enterprise.texts.length > 0 && (
+                                                <>
+                                                        <div className="">
+                                                                {/* Display the heading */}
+                                                                <h3 className="text-3xl font-semibold text-center">{enterprise.heading}</h3>
 
-                                        {enterprise && (<>
-                                                <div className="">
-                                                        <h3 className="text-3xl font-semibold text-center">{enterprise.heading}</h3>
-                                                        {enterprise.texts.map((text, index) => (
-                                                                <p
-                                                                        key={index}
-                                                                        className="text-[1rem] py-4 text-justify mx-36"
-                                                                        dangerouslySetInnerHTML={{ __html: replaceLinks(text) }}
-                                                                />
-                                                        ))}
-                                                </div>
-                                                <div className="flex justify-center">
-                                                        <button className="py-3 px-6 bg-black text-white hover:text-black border-black border-2 my-12 hover:bg-transparent duration-300 font-semibold rounded">
-                                                                Lets's Discuss Your Project
-                                                        </button>
-                                                </div>   </>
+                                                                {/* Display each text in the enterprise section */}
+                                                                {enterprise.texts.map((text, index) => (
+                                                                        <p
+                                                                                key={index}
+                                                                                className="text-[1rem] py-4 text-center mx-36"
+                                                                                dangerouslySetInnerHTML={{ __html: replaceLinks(text) }}
+                                                                        />
+                                                                ))}
+                                                        </div>
+
+                                                        {/* Display the grid of dedicated DevOps developers */}
+                                                        {enterprise.grid && enterprise.grid.length > 0 && (
+                                                                <div className="grid grid-cols-2 gap-x-24 mt-8 mx-44">
+                                                                        {enterprise.grid.map((item, index) => (
+                                                                                <div key={index} className="text-start my-10">
+                                                                                        <h4 className="text-xl font-semibold mb-2">{item.heading}</h4>
+                                                                                        <p>{item.text}</p>
+                                                                                </div>
+                                                                        ))}
+                                                                </div>
+                                                        )}   <div className="flex justify-center">
+                                                                <button className="py-3 px-6 bg-black text-white hover:text-black border-black border-2 my-12 hover:bg-transparent duration-300 font-semibold rounded">
+                                                                        Lets's Discuss Your Project
+                                                                </button>
+                                                        </div>
+                                                </>
                                         )}
 
 
@@ -182,12 +203,12 @@ const OurServices = () => {
                                                 </div>
                                         )}
 
-                                        {portfolio && (
+                                        {portfolio && portfolio.length > 0 && (
                                                 <div>
                                                         <h3 className="text-4xl font-semibold py-9 text-center">Our Portfolio</h3>
                                                         <OwlCarousel
                                                                 className="owl-theme mx-auto"
-                                                                loop
+                                                                loop={false}
                                                                 margin={10}
                                                                 autoplay={true}
                                                                 autoplayTimeout={3000}
@@ -206,6 +227,7 @@ const OurServices = () => {
                                                                 ))}
                                                         </OwlCarousel>
                                                 </div>
+
                                         )}
 
                                         <Contact />
@@ -227,7 +249,9 @@ const OurServices = () => {
                 </>
         );
 
-        return <>{loading ? isLoading : renderContent()}</>;
+        return (<><AdvancedErrorBoundary>
+                {loading ? isLoading : renderContent()}</AdvancedErrorBoundary>
+        </>);
 };
 
 export default OurServices;
