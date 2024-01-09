@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import Layout from './Layout';
+import Layout from '../Components/Layout';
 import { Link } from 'react-router-dom';
 
 const CalendlyInlineWidget = () => {

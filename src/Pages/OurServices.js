@@ -3,9 +3,10 @@ import React, { useEffect } from "react";
 import OwlCarousel from "react-owl-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import Contact from "../Components/Contact";
 import Layout from "../Components/Layout";
-import ScheduleMeeting from "../Components/ScheduleMeeting";
+import ScheduleMeeting from "../Sections/ScheduleMeeting";
 import { setData, setLoading } from "../ReduxToolKit/action";
 import BreadcrumbsSection from "../Sections/BreadCrumbs";
 import DemandDevelopersSection from "../Sections/DemandDevelopers";
@@ -20,6 +21,7 @@ import { Helmet } from "react-helmet";
 const OurServices = () => {
         const dispatch = useDispatch();
         const { slug } = useParams();
+        const navigate = useNavigate();
 
         const { data, enterpriseData, loading } = useSelector((state) => state);
 
@@ -45,6 +47,9 @@ const OurServices = () => {
                                         }
                                 } else {
                                         console.error(`HTTP error! Status: ${response.status}`);
+                                        // Handle HTTP error, for example, redirect to an error page
+                                        navigate('/Page Not Found');
+                                        return; // Add this return statement
                                 }
                         }
 
@@ -54,9 +59,12 @@ const OurServices = () => {
                         dispatch(setLoading(false));
                 } catch (error) {
                         console.error("Error fetching data:", error);
-                        dispatch(setLoading(false));
+                        // Handle other errors, for example, redirect to an error page
+                        navigate('/PageNotFound');
+                        return; // Add this return statement
                 }
         };
+
 
 
 
@@ -68,7 +76,7 @@ const OurServices = () => {
                 const nextApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/CategoriesApi/category/${slug}`;
                 const componentsApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/components/sem/${slug}`;
                 const serviceApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/restfulservices/data/${slug}`;
-                const qualitiApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/restfulservices/data/${slug}`;
+                const qualitiApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/LastCategory/data/${slug}`;
 
                 const apiUrls = [mainApiUrl, enterpriseApiUrl, restofApiUrl, remainingApiUrl, nextApiUrl, componentsApiUrl, serviceApiUrl, qualitiApiUrl];
 
@@ -126,9 +134,9 @@ const OurServices = () => {
                                 <Layout>
                                         {breadcrumbs && <BreadcrumbsSection breadcrumbs={breadcrumbs} />}
                                         {description && <ServicesList {...description[0]} replaceLinks={replaceLinks} />}
-                                        <div className="my-10 grid grid-cols-3 gap-x-11 mx-24">
+                                        <div className="my-10 grid lg:grid-cols-3 gap-x-11 lg:mx-24 mx-4">
                                                 {info && Array.isArray(info) && info.length > 0 && info.map((section, index) => (
-                                                        <div key={index} className={`shadow-xl shadow-gray-400 mt-5 p-5 rounded-md ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
+                                                        <div key={index} className={`border shadow-sm    mt-5 p-5 rounded-md ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
                                                                 <h3 className="text-4xl font-semibold text-center">{section.heading}</h3>
                                                                 <div className="text-center leading-7 text-base my-5">
                                                                         <p dangerouslySetInnerHTML={{ __html: replaceLinks(section.about) }} className="mb-5" />
@@ -141,7 +149,7 @@ const OurServices = () => {
 
                                         <ScheduleMeeting />
 
-                                        {/* {tech && tech.length > 0 && (
+                                        {tech && tech.length > 0 && (
                                                 <>
                                                         <LatestTechnologiesSection tech={tech} />
                                                         <div className="flex justify-center">
@@ -150,43 +158,14 @@ const OurServices = () => {
                                                                 </button>
                                                         </div>
                                                 </>
-                                        )} */}
+                                        )}
 
-                                        <div className='my-16'>
-                                                <h3 className="lg:text-4xl text-[32px] mx-2 font-semibold text-center py-3">{tech?.[0]?.techHeading}</h3>
-                                                <p className="text-center lg:mx-36 mx-5 leading-7 text-[1.1rem] my-5">{tech?.[0]?.techText}</p>
 
-                                                {/* Display Latest Technologies Cards*/}
-                                                <div className="container lg:mx-auto">
-                                                        {tech?.[0]?.cards && (
-                                                                <div className="max-w-[1425px]  grid lg:grid-cols-3 grid-cols-1 lg:mx-0 mx-4 md:grid-cols-3 lg:px-20 md:px-0 gap-x-12 gap-y-6 py-0 px-1">
-                                                                        {tech[0].cards.map((card, index) => (
-                                                                                <div key={index}>
-                                                                                        <img src={card.icon} alt={`icon-${index}`} className="mx-auto" />
-                                                                                        <h3 className="text-xl font-bold text-center py-5">{card.heading}</h3>
-                                                                                        <p className="text-center">{card.text}</p>
-                                                                                </div>
-                                                                        ))}
-                                                                </div>
-                                                        )}
-                                                        {data[0]?.tech[0]?.testing && (
-                                                                <div className="max-w-[1425px] mx-auto grid lg:grid-cols-3 grid-cols-2 md:grid-cols-4 lg:px-20 md:px-20 gap-x-12 gap-y-6 py-0 px-1">
-                                                                        {tech[0].testing.map((testing, index) => (
-                                                                                <div key={index}>
-                                                                                        <img src={testing.icon} alt={`icon-${index}`} className="mx-auto" />
-                                                                                        <h3 className="text-xl font-bold text-center py-5">{testing.heading}</h3>
-                                                                                        <p className="text-center">{testing.text}</p>
-                                                                                </div>
-                                                                        ))}
-                                                                </div>
-                                                        )}
-                                                </div>
-                                        </div>
 
                                         {demandDevs && Object.keys(demandDevs).length > 0 && <DemandDevelopersSection demandDevs={demandDevs} />}
 
                                         {selection && selection.length > 0 && (
-                                                <div className="py-24 bg-gray-50">
+                                                <div className="py-24 ">
                                                         <h3 className="lg:text-[2.20rem] text-2xl font-semibold text-center pb-12 ">{selection[0].heading}</h3>
                                                         {selection[0].cards && <SelectionCards cards={selection[0].cards} replaceLinks={replaceLinks} />}
                                                 </div>

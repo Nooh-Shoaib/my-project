@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import ScheduleMeeting from './ScheduleMeeting';
+import ScheduleMeeting from '../Sections/ScheduleMeeting';
 
 const businessSections = [
         {

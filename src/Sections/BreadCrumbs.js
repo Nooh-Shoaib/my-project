@@ -11,7 +11,7 @@ const BreadcrumbsSection = ({ breadcrumbs }) => {
                         }}
 
                 >
-                        <div className="lg:py-16 py-6 lg:text-start text-center">
+                        <div className="lg:py-16 py-6  text-center">
                                 <div className="flex justify-center">
                                         <h2 className="text-4xl text-white font-semibold container mx-auto lg:mx-0">{breadcrumbs?.pageTitle}</h2>
                                 </div>

@@ -6,13 +6,13 @@ const SelectionCards = ({ cards, replaceLinks }) => {
                         {cards.map((card, index) => (
                                 <div
                                         key={index}
-                                        className=" lg:inline-flex rounded-xl w-full lg:w-[48%] shadow-gray-400 py-10 px-6 h-auto lg:justify-center lg:align-middle mb-8 lg:mb-0 border"
+                                        className=" lg:inline-flex rounded-xl w-full lg:w-full shadow-gray-400 py-10 px-6 h-auto lg:justify-center lg:align-middle mb-8 lg:mb-0 border"
                                 >
-                                        <img src={card.icon} alt={`icon-${index}`} className="max-h-20 w-24 mx-auto mb-4" />
-                                        <div className="px-6 lg:px-0">
+                                        <img src={card.icon} alt={`icon-${index}`} className="max-h-20 w-24 " />
+                                        <div className="lg:px-12 px-4">
                                                 <h3 className="text-xl font-semibold py-2">{card.heading}</h3>
                                                 <p
-                                                        className="lg:text-justify md:text-start   text-center text-[1rem]"
+                                                        className="text-justify text-[1rem]"
                                                         dangerouslySetInnerHTML={{
                                                                 __html: replaceLinks(card.text),
                                                         }}
