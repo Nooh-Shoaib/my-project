@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const BreadcrumbsSection = ({ breadcrumbs }) => {
-        return (
+        return (<>
                 <div className='lg:h-[250px]'
                         style={{
                                 backgroundImage: `url(${breadcrumbs?.backgroundimage})`,
@@ -27,7 +27,8 @@ const BreadcrumbsSection = ({ breadcrumbs }) => {
                                 </div>
                         </div>
                 </div >
-        );
+
+        </>);
 };
 
 export default BreadcrumbsSection;

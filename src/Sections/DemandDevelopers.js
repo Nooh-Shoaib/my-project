@@ -14,7 +14,7 @@ const DemandDevelopersSection = ({ demandDevs }) => {
                                 width: '100%',
                         }}
                 >
-                        <div className='hidden lg:block'>
+                        <div className='hidden lg:block md:block'>
                                 <div className="lg:flex lg:justify-between lg:px-28 py-">
                                         <div className="mt-12 ">
                                                 <h2
@@ -39,21 +39,21 @@ const DemandDevelopersSection = ({ demandDevs }) => {
                         </div>
 
                         {/* mobile screen */}
-                        <div className='lg:hidden'>
-                                <div className="lg:flex lg:justify-between lg:px-28 py-">
-                                        {demandDevs.image && <img src={demandDevs.image} alt="work" className="lg:w-[500px] w-[300px] " />}
-                                        <div className="mt-12 ">
+                        <div className='lg:hidden md:hidden'>
+                                <div className="">
+                                        {demandDevs.image && <img src={demandDevs.image} alt="work" className="" />}
+                                        <div className="mt-6 ">
                                                 <h2
-                                                        className="text-white lg:text-[44px] text-[32px] text-start"
+                                                        className="text-white  text-[32px] text-start"
                                                         dangerouslySetInnerHTML={{ __html: demandDevs.heading }}
                                                 ></h2>
-                                                <div className="lg:space-x-5 lg:flex justify-start">
-                                                        <button className="lg:py-3 md:py-2.5 px-1 md:px-2 lg:px-6 rounded font-semibold border-2 mx-3 md:mx-0 lg:mx-0 border-white bg-transparent my-3 text-white lg:text-lg text-base ">
+                                                <div className="lg:space-x-5 lg:flex justify-start py-3">
+                                                        <button className="lg:py-3 md:py-2.5 px-1 md:px-2 lg:px-6 rounded font-semibold border-2 mx-3 md:mx-0 lg:mx-0 border-white bg-transparent my-1 text-white lg:text-lg text-base  ">
                                                                 Hire Affordable Developers Now!
                                                         </button>
 
                                                         <Link to="/schedule-a-meeting" target="_blank" rel="noopener noreferrer">
-                                                                <button className="py-3 px-3 md:px-2 lg:px-5 rounded border-2 mx-3 md:mx-0 lg:mx-0 border-white bg-white font-semibold text-black my-3 lg:text-lg text-base">
+                                                                <button className="py-3 px-3 md:px-2 lg:px-5 rounded border-2 mx-3 md:mx-0 lg:mx-0 border-white bg-white font-semibold text-black my-1 lg:text-lg text-base">
                                                                         Schedule a Meeting
                                                                 </button>
                                                         </Link>
