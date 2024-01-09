@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const DemandDevelopersSection = ({ demandDevs }) => {
         return (
-                <div
+                <div className='lg:h-[460px]'
                         style={{
                                 position: 'relative',
                                 backgroundImage: `url(${demandDevs.backgroundimage})`,
@@ -11,19 +11,18 @@ const DemandDevelopersSection = ({ demandDevs }) => {
                                 textAlign: 'center',
                                 backgroundRepeat: 'no-repeat',
                                 backgroundSize: 'cover',
-                                height: '460px',
                                 width: '100%',
                         }}
                 >
 
-                        <div className="flex justify-between px-28 py-">
+                        <div className="lg:flex lg:justify-between lg:px-28 py-">
                                 <div className="mt-12 ">
                                         <h2
-                                                className="text-white text-[44px] text-start"
+                                                className="text-white lg:text-[44px] text-[32px] text-start"
                                                 dangerouslySetInnerHTML={{ __html: demandDevs.heading }}
                                         ></h2>
-                                        <div className="space-x-5 flex justify-start">
-                                                <button className="lg:py-3 md:py-2.5 px-4 md:px-2 lg:px-6 rounded font-semibold border-2 mx-3 md:mx-0 lg:mx-0 border-white bg-transparent my-3 text-white lg:text-lg text-base ">
+                                        <div className="lg:space-x-5 lg:flex justify-start">
+                                                <button className="lg:py-3 md:py-2.5 px-1 md:px-2 lg:px-6 rounded font-semibold border-2 mx-3 md:mx-0 lg:mx-0 border-white bg-transparent my-3 text-white lg:text-lg text-base ">
                                                         Hire Affordable Developers Now!
                                                 </button>
 
@@ -35,7 +34,7 @@ const DemandDevelopersSection = ({ demandDevs }) => {
                                         </div>
                                 </div>
 
-                                {demandDevs.image && <img src={demandDevs.image} alt="work" className="w-[500px] " />}
+                                {demandDevs.image && <img src={demandDevs.image} alt="work" className="lg:w-[500px] w-[300px] " />}
                         </div>
                 </div >
         );

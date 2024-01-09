@@ -4,14 +4,15 @@ import { Link } from 'react-router-dom'
 const ScheduleMeeting = () => {
         return (
                 <section className='bg-black '>
-                        <div className='h-24 flex justify-around  items-center  '>
-                                <h2 className='text-2xl font-semibold text-white '>Don’t have a website or app? What are you waiting for?</h2>
-                                <div className='space-x-5'>
-                                        <button className=" py-4 px-7 rounded-md font-semibold border-2 mx-3 lg:mx-0 border-white bg-transparent  my-3 text-white">Ask For Demo</button>
-                                        <Link to='/schedule-a-meeting'>
-                                                <button className=" py-3.5 px-1.5 md:px-4 lg:px-5 rounded-md font-semibold border-2  lg:mx-0 border-white bg-white text-black my-3 lg:text-lg text-base">
-                                                        Schedule a meeting
-                                                </button></Link>
+                        <div className='lg:h-24 md:h-44 h-72 lg:flex md:flex lg:justify-around md:justify-between items-center  px-4 '>
+                                <h2 className='text-2xl font-semibold text-white lg:text-start md:text-start text-center py-2  '>Don’t have a website or app? What are you waiting for?</h2>
+                                <div className='lg:grid lg:grid-cols-2  grid justify-items-center md:justify-items-end  md:grid'>
+                                <button className="py-4 px-7 md:py-3 rounded-md font-semibold border-2 lg:mx-3  border-white bg-transparent my-1 md:my-2 text-white">Ask For Demo</button>
+                                <Link to='/schedule-a-meeting'>
+                                        <button className="py-3.5 px-8 md:px-10 md:py-0 lg:px-5 rounded-md font-semibold border-2 lg:mx-0 border-white bg-white text-black  lg:text-lg text-base">
+                                                Schedule a meeting
+                                        </button>
+                                </Link>
                                 </div>
                         </div>
                 </section>
@@ -19,3 +20,6 @@ const ScheduleMeeting = () => {
 }
 
 export default ScheduleMeeting
+// < div className = 'grid justify-items-center  container mx-auto' >
+                                
+//                         </div >

@@ -3,20 +3,19 @@ import { Link } from 'react-router-dom';
 
 const BreadcrumbsSection = ({ breadcrumbs }) => {
         return (
-                <div
+                <div className='lg:h-[250px]'
                         style={{
                                 backgroundImage: `url(${breadcrumbs?.backgroundimage})`,
                                 backgroundRepeat: "no-repeat",
                                 backgroundSize: "cover", // Use object-fit equivalent for background images
-                                height: "250px",
                         }}
 
                 >
-                        <div className="py-16">
+                        <div className="lg:py-16 py-6 lg:text-start text-center">
                                 <div className="flex justify-center">
-                                        <h2 className="text-4xl text-white font-semibold">{breadcrumbs?.pageTitle}</h2>
+                                        <h2 className="text-4xl text-white font-semibold container mx-auto lg:mx-0">{breadcrumbs?.pageTitle}</h2>
                                 </div>
-                                <div className="flex justify-center mt-5">
+                                <div className="flex justify-center lg:mt-5 mt-2">
                                         <Link to="/" className="text-white text-base font-semibold">
                                                 Home &nbsp;
                                         </Link>

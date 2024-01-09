@@ -38,7 +38,7 @@ const Contact = () => {
                                                         name={field.id}
                                                         required
                                                         placeholder={field.label}
-                                                        className="ring-1 focus:outline-none lg:w-[450px] md:w-[300px] w-[250px] placeholder:px-3 lg:placeholder:px-0 ring-gray-400 rounded lg:px-5 md:px-1 py-3 lg:mb-0 mb-4"
+                                                        className="ring-1 focus:outline-none lg:w-[450px] md:w-[300px] w-[250px]  px-3 ring-gray-400 rounded lg:px-5 md:px-1 py-3 lg:mb-0 mb-4"
                                                 />
                                         </div>
                                 ))}

@@ -68,8 +68,9 @@ const OurServices = () => {
                 const nextApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/CategoriesApi/category/${slug}`;
                 const componentsApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/components/sem/${slug}`;
                 const serviceApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/restfulservices/data/${slug}`;
+                const qualitiApiUrl = `https://my-json-server.typicode.com/Nooh-Shoaib/restfulservices/data/${slug}`;
 
-                const apiUrls = [mainApiUrl, enterpriseApiUrl, restofApiUrl, remainingApiUrl, nextApiUrl, componentsApiUrl, serviceApiUrl];
+                const apiUrls = [mainApiUrl, enterpriseApiUrl, restofApiUrl, remainingApiUrl, nextApiUrl, componentsApiUrl, serviceApiUrl, qualitiApiUrl];
 
                 fetchData(apiUrls, (mainData) => dispatch(setData(mainData)));
         }, [dispatch, slug]);
@@ -124,9 +125,7 @@ const OurServices = () => {
                         {!loading && (
                                 <Layout>
                                         {breadcrumbs && <BreadcrumbsSection breadcrumbs={breadcrumbs} />}
-                                        <div className="my-10">
-                                                {description && <ServicesList {...description[0]} replaceLinks={replaceLinks} />}
-                                        </div>
+                                        {description && <ServicesList {...description[0]} replaceLinks={replaceLinks} />}
                                         <div className="my-10 grid grid-cols-3 gap-x-11 mx-24">
                                                 {info && Array.isArray(info) && info.length > 0 && info.map((section, index) => (
                                                         <div key={index} className={`shadow-xl shadow-gray-400 mt-5 p-5 rounded-md ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
@@ -142,7 +141,7 @@ const OurServices = () => {
 
                                         <ScheduleMeeting />
 
-                                        {tech && tech.length > 0 && (
+                                        {/* {tech && tech.length > 0 && (
                                                 <>
                                                         <LatestTechnologiesSection tech={tech} />
                                                         <div className="flex justify-center">
@@ -151,36 +150,63 @@ const OurServices = () => {
                                                                 </button>
                                                         </div>
                                                 </>
-                                        )}
+                                        )} */}
 
+                                        <div className='my-16'>
+                                                <h3 className="lg:text-4xl text-[32px] mx-2 font-semibold text-center py-3">{tech?.[0]?.techHeading}</h3>
+                                                <p className="text-center lg:mx-36 mx-5 leading-7 text-[1.1rem] my-5">{tech?.[0]?.techText}</p>
+
+                                                {/* Display Latest Technologies Cards*/}
+                                                <div className="container lg:mx-auto">
+                                                        {tech?.[0]?.cards && (
+                                                                <div className="max-w-[1425px]  grid lg:grid-cols-3 grid-cols-1 lg:mx-0 mx-4 md:grid-cols-3 lg:px-20 md:px-0 gap-x-12 gap-y-6 py-0 px-1">
+                                                                        {tech[0].cards.map((card, index) => (
+                                                                                <div key={index}>
+                                                                                        <img src={card.icon} alt={`icon-${index}`} className="mx-auto" />
+                                                                                        <h3 className="text-xl font-bold text-center py-5">{card.heading}</h3>
+                                                                                        <p className="text-center">{card.text}</p>
+                                                                                </div>
+                                                                        ))}
+                                                                </div>
+                                                        )}
+                                                        {data[0]?.tech[0]?.testing && (
+                                                                <div className="max-w-[1425px] mx-auto grid lg:grid-cols-3 grid-cols-2 md:grid-cols-4 lg:px-20 md:px-20 gap-x-12 gap-y-6 py-0 px-1">
+                                                                        {tech[0].testing.map((testing, index) => (
+                                                                                <div key={index}>
+                                                                                        <img src={testing.icon} alt={`icon-${index}`} className="mx-auto" />
+                                                                                        <h3 className="text-xl font-bold text-center py-5">{testing.heading}</h3>
+                                                                                        <p className="text-center">{testing.text}</p>
+                                                                                </div>
+                                                                        ))}
+                                                                </div>
+                                                        )}
+                                                </div>
+                                        </div>
 
                                         {demandDevs && Object.keys(demandDevs).length > 0 && <DemandDevelopersSection demandDevs={demandDevs} />}
 
                                         {selection && selection.length > 0 && (
-                                                <div className="py-24">
-                                                        <h3 className="text-[2.20rem] font-semibold text-center pb-12 ">{selection[0].heading}</h3>
+                                                <div className="py-24 bg-gray-50">
+                                                        <h3 className="lg:text-[2.20rem] text-2xl font-semibold text-center pb-12 ">{selection[0].heading}</h3>
                                                         {selection[0].cards && <SelectionCards cards={selection[0].cards} replaceLinks={replaceLinks} />}
                                                 </div>
                                         )}
                                         {enterprise && enterprise.texts && enterprise.texts.length > 0 && (
                                                 <>
                                                         <div className="">
-                                                                {/* Display the heading */}
                                                                 <h3 className="text-3xl font-semibold text-center">{enterprise.heading}</h3>
 
-                                                                {/* Display each text in the enterprise section */}
                                                                 {enterprise.texts.map((text, index) => (
                                                                         <p
                                                                                 key={index}
-                                                                                className="text-[1rem] py-4 text-center mx-36"
+                                                                                className="text-[1rem] py-4  lg:text-center text-start lg:mx-36 mx-4"
                                                                                 dangerouslySetInnerHTML={{ __html: replaceLinks(text) }}
                                                                         />
                                                                 ))}
                                                         </div>
 
-                                                        {/* Display the grid of dedicated DevOps developers */}
                                                         {enterprise.grid && enterprise.grid.length > 0 && (
-                                                                <div className="grid grid-cols-2 gap-x-24 mt-8 mx-44">
+                                                                <div className="lg:grid lg:grid-cols-2 grid-cols-1 lg:gap-x-24 mt-8 lg:mx-44 mx-4">
                                                                         {enterprise.grid.map((item, index) => (
                                                                                 <div key={index} className="text-start my-10">
                                                                                         <h4 className="text-xl font-semibold mb-2">{item.heading}</h4>
@@ -205,14 +231,24 @@ const OurServices = () => {
 
                                         {portfolio && portfolio.length > 0 && (
                                                 <div>
-                                                        <h3 className="text-4xl font-semibold py-9 text-center">Our Portfolio</h3>
+                                                        <h3 className="text-4xl font-semibold py-5 text-center">Our Portfolio</h3>
                                                         <OwlCarousel
                                                                 className="owl-theme mx-auto"
                                                                 loop={false}
                                                                 margin={10}
                                                                 autoplay={true}
                                                                 autoplayTimeout={3000}
-                                                                style={{ width: "70%", height: "full" }}
+                                                                responsive={{
+                                                                        0: {
+                                                                                items: 1,
+                                                                        },
+                                                                        600: {
+                                                                                items: 2,
+                                                                        },
+                                                                        1000: {
+                                                                                items: 3,
+                                                                        },
+                                                                }}
                                                         >
                                                                 {portfolio.map((item, index) => (
                                                                         <div key={index} className="relative text-center shadow-2xl lg:shadow-none group">
@@ -227,20 +263,20 @@ const OurServices = () => {
                                                                 ))}
                                                         </OwlCarousel>
                                                 </div>
-
                                         )}
+
 
                                         <Contact />
                                         <section className='bg-black '>
-                                                <div className='h-24 flex justify-around  items-center  '>
-                                                        <h2 className='text-2xl font-semibold text-white '>Don’t have a website or app? What are you waiting for?</h2>
-                                                        <div className='space-x-5'>
-                                                                <button className=" py-4 px-7 rounded-md font-semibold border-2 mx-3 lg:mx-0 border-white bg-transparent  my-3 text-white">Get A Free Proposal</button>
+                                                <div className='lg:h-24 md:h-44 h-72 lg:flex md:flex lg:justify-around md:justify-between items-center  px-4 py-6 '>
+                                                        <h2 className='text-2xl font-semibold text-white text-start  py-2  '>Don’t have a website or app? What are you waiting for?</h2>
+                                                        <div className='lg:grid lg:grid-cols-2  grid justify-items-center md:justify-items-end  md:grid'>
+                                                                <button className="py-3.5 px-8 md:px-10 md:py-0 lg:px-5 rounded-md font-semibold border-2 lg:mx-3  border-white bg-transparent my-1 md:my-2 text-white">Get A Free Proposal</button>
                                                                 <Link to='/schedule-a-meeting'>
-                                                                        <button className=" py-3.5 px-1.5 md:px-4 lg:px-5 rounded-md font-semibold border-2  lg:mx-0 border-white bg-white text-black my-3 lg:text-lg text-base">
-                                                                                Schedule a Meeting
-
-                                                                        </button></Link>
+                                                                        <button className="py-3.5 px-8 md:px-10 md:py-0 lg:px-5 rounded-md font-semibold border-2 lg:mx-0 border-white bg-white text-black  lg:text-lg text-base">
+                                                                                Schedule a meeting
+                                                                        </button>
+                                                                </Link>
                                                         </div>
                                                 </div>
                                         </section>
