@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import OwlCarousel from "react-owl-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
 import Contact from "../Components/Contact";
 import Layout from "../Components/Layout";
 import ScheduleMeeting from "../Sections/ScheduleMeeting";
@@ -21,7 +20,6 @@ import { Helmet } from "react-helmet";
 const OurServices = () => {
         const dispatch = useDispatch();
         const { slug } = useParams();
-        const navigate = useNavigate();
 
         const { data, enterpriseData, loading } = useSelector((state) => state);
 
@@ -47,9 +45,6 @@ const OurServices = () => {
                                         }
                                 } else {
                                         console.error(`HTTP error! Status: ${response.status}`);
-                                        // Handle HTTP error, for example, redirect to an error page
-                                        navigate('/Page Not Found');
-                                        return; // Add this return statement
                                 }
                         }
 
@@ -59,12 +54,9 @@ const OurServices = () => {
                         dispatch(setLoading(false));
                 } catch (error) {
                         console.error("Error fetching data:", error);
-                        // Handle other errors, for example, redirect to an error page
-                        navigate('/PageNotFound');
-                        return; // Add this return statement
+                        dispatch(setLoading(false));
                 }
         };
-
 
 
 
